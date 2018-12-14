@@ -11,7 +11,7 @@ export const regexTestReducer = combineReducers({
   maxSampleLength: (state = 300) => state,
   maxSubPatternLength: (state = 300) => state,
   output: (state = '') => state,
-  overRideDelimiter: (state = '/') => state,
+  overrideDelimiter: (state = '/') => state,
   regexEngine: (state = 'vanillaJS') => state,
   regexID: regexIdReducer,
   regexes: regexesReducer,

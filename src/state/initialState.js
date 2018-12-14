@@ -3,12 +3,13 @@ export const initialState = {
   defaultMultiLineRegex: false,
   defaultMultiLineCount: 3,
   doReplaceBeforeNext: true,
-  input: '',
+  input: [],
   maxSampleLength: 300,
   maxSubPatternLength: 300,
   output: '',
-  overRideDelimiter: '/',
-  regexEngine: 'vanillaJS',
+  overrideDelimiter: '/',
+  regexEngine: null,
+  regexEngineName: 'vanillaJS',
   regexID: 0,
   regexes: [
     {
@@ -22,15 +23,15 @@ export const initialState = {
       transformEscapedWhiteSpace: true,
       valid: true,
       error: {},
-      result: []
+      matches: []
     }
   ],
   showWhiteSpaceCharacters: false,
   whiteSpace: {
-    before: false,
     joinString: '\n',
     split: false,
     splitPattern: '[\r\n]+',
-    trim: false
+    trim: false,
+    trimBefore: false
   }
 }

@@ -19,14 +19,14 @@ export const newRegex = (store) => (next) => (action) => {
       id: currentState.regexID,
       pattern: '',
       replace: '',
-      delimiter: (triggerRegex !== null) ? triggerRegex.delimiter : currentState.overRideDelimiter,
+      delimiter: (triggerRegex !== null) ? triggerRegex.delimiter : currentState.overrideDelimiter,
       modifiers: '',
       isMultiLine: (triggerRegex !== null) ? triggerRegex.isMultiLine : currentState.multiLineRegex,
       multiLineCount: (triggerRegex !== null) ? triggerRegex.multiLineCount : (currentState.multiLineRegex) ? currentState.defaultMultiLineCount : 0,
       transformEscapedWhiteSpace: true,
       valid: true,
       error: {},
-      result: []
+      matches: []
     }
 
     const updatedAction = { ...action, payload: newPayload }

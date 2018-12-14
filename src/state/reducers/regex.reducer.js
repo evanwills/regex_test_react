@@ -1,4 +1,4 @@
-import { REGEX } from '../actions/regex.action.js'
+import { REGEX, UPDATE_REGEX } from '../actions/regex.action.js'
 
 const regexAddNew = (state, action) => {
   const getIndex = (_accum, item, index) => {
@@ -18,19 +18,53 @@ const regexAddNew = (state, action) => {
 }
 
 const regexUpdateExisting = (state, action) => {
+  switch (action.meta.mode) {
+    case UPDATE_REGEX.UPDATE_REGEX_BASIC:
+      return state.map(regex => {
+        if (action.meta.id === regex.id) {
+          return { ...regex, ...action.payload }
+        } else {
+          return regex
+        }
+      })
 
+    case UPDATE_REGEX.UPDATE_REGEX_SET_ERROR:
+      const errorObj = (action.payload.valid) ? {} : { message: action.payload.message, parts: action.payload.errorParts }
+      return state.map(regex => {
+        if (action.meta.id === regex.id) {
+          return { ...regex, valid: action.payload.valid, error: errorObj, MATCHEs: [] }
+        } else {
+          return regex
+        }
+      })
+
+    case UPDATE_REGEX.UPDATE_REGEX_SET_MATCHES:
+      return state.map(regex => {
+        if (action.meta.id === regex.id) {
+          return { ...regex, valid: true, error: {}, matches: action.payload }
+        } else {
+          return regex
+        }
+      })
+  }
 }
 
 const regexMoveExisting = (state, action) => {
+  let i = null
+  const regexToMove = state.reduce((_accum, _item, index) => {
+    if (_item.id === action.payload.id) {
+      _accum = _item
+      i = index
+    }
+  }, false)
 
-}
+  if (regexToMove === false) {
+    return state
+  }
 
-const regexValidate = (state, action) => {
+  const intermediateState = state.splice(i, 1)
 
-}
-
-const regexTest = (state, action) => {
-
+  return intermediateState.splice(action.payload.position, 0, regexToMove)
 }
 
 export const regexesReducer = (state = {}, action) => {
@@ -44,11 +78,8 @@ export const regexesReducer = (state = {}, action) => {
     case REGEX.MOVE_EXISTING_REGEX:
       return regexMoveExisting(state, action)
 
-    case REGEX.VALIDATE_REGEX:
-      return regexValidate(state, action)
-
-    case REGEX.TEST_REGEX:
-      return regexTest(state, action)
+    case REGEX.DELETE_REGEX:
+      return state.filter(_item => action.payload)
 
     default:
       return state
