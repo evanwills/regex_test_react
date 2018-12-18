@@ -1,4 +1,4 @@
-import { REGEX, UPDATE_REGEX } from '../actions/regex.action.js'
+import { REGEX, UPDATE_REGEX } from '../actions/regex.action'
 
 const regexAddNew = (state, action) => {
   const getIndex = (_accum, item, index) => {
@@ -67,7 +67,7 @@ const regexMoveExisting = (state, action) => {
   return intermediateState.splice(action.payload.position, 0, regexToMove)
 }
 
-export const regexesReducer = (state = {}, action) => {
+export const regexesReducer = (state = [], action) => {
   switch (action.type) {
     case REGEX.ADD_NEW_REGEX:
       return regexAddNew(state, action)

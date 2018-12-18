@@ -1,20 +1,20 @@
 import { combineReducers } from 'redux'
-import { regexesReducer, regexIdReducer } from './regex.reducer.js'
-import { whiteSpaceReducer } from './whiteSpace.reducer.js'
+import { regexesReducer, regexIdReducer } from './regex.reducer'
+import { whiteSpaceReducer } from './whiteSpace.reducer'
 
 export const regexTestReducer = combineReducers({
-  autoTestOnBlur: (state = false) => state,
-  defaultMultiLineRegex: (state = false) => state,
-  defaultMultiLineCount: (state = 3) => state,
-  doReplaceBeforeNext: (state = true) => state,
-  input: (state = '') => state,
-  maxSampleLength: (state = 300) => state,
-  maxSubPatternLength: (state = 300) => state,
-  output: (state = '') => state,
-  overrideDelimiter: (state = '/') => state,
-  regexEngine: (state = 'vanillaJS') => state,
+  autoTestOnBlur: (state:boolean = false) => state,
+  defaultMultiLineRegex: (state:boolean = false) => state,
+  defaultMultiLineCount: (state:number = 3) => state,
+  doReplaceBeforeNext: (state:boolean = true) => state,
+  input: (state:string = '') => state,
+  maxSampleLength: (state:number = 300) => state,
+  maxSubPatternLength: (state:number = 300) => state,
+  output: (state:string = '') => state,
+  overrideDelimiter: (state:string = '/') => state,
+  regexEngine: (state:string = 'vanillaJS') => state,
   regexID: regexIdReducer,
   regexes: regexesReducer,
-  showWhiteSpaceCharacters: (state = false) => state,
+  showWhiteSpaceCharacters: (state:boolean = false) => state,
   whiteSpace: whiteSpaceReducer
 })

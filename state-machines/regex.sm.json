@@ -1,0 +1,41 @@
+{
+  "wholeRegex": {
+    "states": ["empty", "valid", "invalid"],
+    "default": "empty",
+    "empty": {
+      "pattern": "empty",
+      "modifiers": "valid",
+      "delimiter": "valid",
+      "multiLineCount": "valid"
+    },
+    "valid": {
+      "pattern": "valid",
+      "modifiers": "valid",
+      "delimiter": "valid",
+      "multiLineCount": "valid"
+    },
+    "note": "All other states are invalid"
+  },
+  "pattern": {
+    "states": ["empty", "valid", "invalid"],
+    "empty": "",
+    "not-empty": ".+"
+  },
+  "modifiers": {
+    "states": ["valid", "invalid"],
+    "valid-when": "contains no more than one of each of the modifier letters"
+  },
+  "delimiter": {
+    "states": ["valid", "invalid"],
+    "valid-when": "contains only one non-alpha-numeric, non-whitespace charater"
+  },
+  "multiLineCount": {
+    "states": ["valid", "invalid"],
+    "min": 1,
+    "max": 512,
+    "default": 1,
+    "valid-when": "is integer, greater than zero and less than 513",
+    "requires": "modifier must contain 'x'"
+  }
+}
+

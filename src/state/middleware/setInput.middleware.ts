@@ -1,14 +1,14 @@
 import { GENERAL } from '../actions/general.actions'
 
 
-const split = (splitter, input) => {
+const split = (splitter: string, input: string) => {
   const regex = new RegExp('(.*?)(?=' + splitter + '|$)', 'g')
   return input.match(regex)
 }
 
 const trimRegex = new RegExp('^\s+|\s+$', 'g')
 
-const trim = (input) => {
+const trim = (input: string) => {
   return input.replace(trimRegex, '')
 }
 
@@ -29,7 +29,7 @@ export const setInput = (store) => (next) => (action) => {
   }
 }
 
-const implode = (sep) => (_accum, _item) => {
+const implode = (sep: string) => (_accum: string, _item) => {
   if (_accum === '' ) {
     return _item
   } else {
