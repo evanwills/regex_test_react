@@ -1,4 +1,4 @@
-[
+export const regexEngineConfig = [
   {
     "id": "vanillaJS",
     "apiURL": "",
@@ -37,4 +37,4 @@
     },
     "type": "remote"
   }
-]
+];
