@@ -23,8 +23,9 @@ export interface RegexPair {
 }
 
 export interface RegexMatch {
-  wholeMatch: string;
-  matchedParts: Array<string>
+  whole: string;
+  parts: any
+  position?: number
 }
 
 export interface RegexTestResult {
@@ -37,7 +38,6 @@ export interface RegexTestResult {
 export interface ConstructedRegex {
   error: string,
   find: any,
-  isGlobal: boolean
   replace: string,
 }
 
@@ -51,4 +51,17 @@ export interface RegexConfig {
   "name": string,
   "pairedDelimiters"?: PairedDelimter,
   "type": RegexType
+}
+
+export interface RegexError {
+  "rawMessage": string,
+  "message": string,
+  "offset": number,
+  "badCharacter": string,
+  "regexID"?: number
+}
+
+export interface ValidatedRegex {
+  "valid": boolean,
+  "error?": RegexError
 }
