@@ -83,9 +83,12 @@ function regex_match_all( $regex, $input, $truncator) {
 	return $all_matches;
 }
 
-function get_truncators($sample_length, $subpattern_length) {
+function get_truncators($post) {
 	$truncate_sample = function($input) { return $input; };
 	$truncate_subPattern = function($input) { return $input; };
+
+	$sample_length = isset($post['maxSampleLength']) ? $post['maxSampleLength'] : 0;
+	$subpattern_length = isset($post['maxSubPatternLength']) ? $post['maxSubPatternLength'] : 0;
 
 	if( is_numeric($sample_length) && $sample_length > 10 ) {
 		settype($sample_length, 'integer');
@@ -140,32 +143,41 @@ function get_parse_regex_error( $regex, $id = -1 ) {
 	return $output;
 }
 
-function prepare_regexes($regexes) {
-	$output = array();
-	for( $a = 0 ; $a < count($regexes) ; $a += 1 ) {
-		$regex = $regex_pairs[$a]['delimiterOpen'].
-				 $regex_pairs[$a]['regex'].
-				 $regex_pairs[$a]['delimiterClose'].
-				 $regex_pairs[$a]['modifiers'];
+function prepare_regex($regex_pair, $a) {
+	$required_fields = array('delimiterOpen', 'regex', 'delimiterClose', 'modifiers', 'replace');
+	$name = '"regexPairs['.$a.']"';
+	$expected = 'associtive array with the following mandatory keys: '.implode(', ',$required_fields);
 
- 		$replace = $regexes[$a]['replace'];
-
-		if( $regexes[$a]['transformWhitespaceCharacters'] === true ) {
-			$replace = preg_replace(
-				array( '`(?!<\\)\\t`', '`(?!<\\)\\r`', '`(?!<\\)\\n`', '`(?!<\\)\\f`' ),
-				array( "\t", "\r", "\n", "\f" ),
-				$replace
-			);
+	if( !is_array($regex_pair) ) {
+		report_bad_request(43, $name, $expected, gettype($regex_pair).' given');
+	}
+	for( $a = 0 ; $a < count($required_fields) ; $a += 1 ) {
+		if( !array_key_exists($required_fields[$a], $regex_pair) ) {
+			report_bad_request(44, $name, $expected, $required_fields[$a].' was not given');
 		}
+	}
 
-		$output[] = array(
-			'id' => $regexes[$a]['id'],
-			'error' => get_parse_regex_error($regex),
-			'regex'  => $regex,
-			'replace' => $replace
+	$regex = $regex_pair['delimiterOpen'].
+			 $regex_pair['regex'].
+			 $regex_pair['delimiterClose'].
+			 $regex_pair['modifiers'];
+
+	$replace = $regex_pair['replace'];
+
+	if( array_key_exists('transformWhitespaceCharacters', $regex_pair) && $regex_pair['transformWhitespaceCharacters'] === true ) {
+		$replace = preg_replace(
+			array( '`(?!<\\)\\t`', '`(?!<\\)\\r`', '`(?!<\\)\\n`', '`(?!<\\)\\f`' ),
+			array( "\t", "\r", "\n", "\f" ),
+			$replace
 		);
 	}
-	return $output;
+
+	$output[] = array(
+		'id' => $regex_pair['id'],
+		'error' => get_parse_regex_error($regex),
+		'regex'  => $regex,
+		'replace' => $replace
+	);
 }
 
 function test_all( $inputs , $regex_pairs , $truncators ) {
@@ -207,4 +219,100 @@ function replace_all( $inputs, $regex_pairs) {
 		$output[] = $input;
 	}
 	return $output;
+}
+
+function report_bad_request($code , $name, $expected, $actual, $caught_message = '') {
+	ob_start();
+	http_response_code(400);
+	if( $caught_message !== '' ) {
+		$caught_message = ' '.$caught_message;
+	}
+	echo json_encode(array(
+		'code' => $code,
+		'message' => "Regex Test (PHP) API expectes $name to be $expected. $actual given.$caught_message"
+	));
+	ob_end_flush();
+	exit;
+}
+
+function send_good_response($output) {
+	ob_start();
+	// http_response_code(400);
+	echo json_encode($output);
+	ob_end_flush();
+	exit;
+}
+
+function validate_input($post) {
+	$name = '"input"';
+	$expected = 'a JSON object containing an array of strings to be used as inputs for testing or find/replace';
+	if( !isset($post['input']) ) {
+		report_bad_request(30, $name, $expected, 'No input given');
+	}
+	try {
+		$output = json_decode($post['input'], true);
+	} catch( Exception $e ) {
+		report_bad_request(31, $name, $expected, 'decoding JSON failed:', $e->getMessage());
+	}
+	if( !is_array($output) ) {
+		report_bad_request(32, $name, $expected, gettype($output).' given');
+	}
+	for( $a = 0 ; $a < count($output) ; $a += 1 ) {
+		if( !is_string($output[$a]) ) {
+			report_bad_request(34, $name, $expected, 'input['.$a.'] is not a string. '.gettype($output[$a]));
+		}
+	}
+	return $output;
+}
+
+function validate_regex_pairs($post) {
+	$name = '"regexPairs"';
+	$expected = 'a JSON object containing an array of RegexPair objects to be used as find/replace for testing or find/replace';
+	if( !isset($post['regexPairs']) ) {
+		report_bad_request(40, $name, $expected, 'No regexPairs');
+	}
+	try {
+		$output = json_decode($post['regexPairs'], true);
+	} catch( Exception $e ) {
+		report_bad_request(21, $name, $expected, 'decoding JSON failed:', $e->getMessage());
+	}
+	if( !is_array($output) ) {
+		report_bad_request(42, $name, $expected, gettype($output));
+	}
+	for( $a = 0 ; $a < count($output) ; $a += 1 ) {
+		$output[$a] = prepare_regex($output[$a], $a);
+	}
+	return $output;
+}
+
+
+function validate_regex($post) {
+	$required_fields = array('delimiterOpen', 'regex', 'delimiterClose', 'modifiers');
+	$name = '"regex"';
+	$expected = 'a JSON object that decodes to an associtive array with the following mandatory keys: '.implode(', ',$required_fields);
+
+	if( !array_key_exists('regex', $post) ) {
+		report_bad_request(20, $name, $expected, '"regex" not');
+	}
+	try {
+		$regex = json_decode($post['regex'], true);
+	} catch( Exception $e ) {
+		report_bad_request(21, $name, $expected, 'decoding JSON failed:', $e->getMessage());
+	}
+
+	if( !is_array($post['regex']) ) {
+		report_bad_request(21, $name, $expected, gettype($regex_pair));
+	}
+	for( $a = 0 ; $a < count($required_fields) ; $a += 1 ) {
+		if( !array_key_exists($required_fields[$a], $regex_pair) ) {
+			report_bad_request(22, $name, $expected, $required_fields[$a].' was not present');
+		}
+	}
+
+	$regex = $regex_pair['delimiterOpen'].
+			 $regex_pair['regex'].
+			 $regex_pair['delimiterClose'].
+			 $regex_pair['modifiers'];
+
+	return get_parse_regex_error($regex);
 }
