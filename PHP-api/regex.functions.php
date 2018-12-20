@@ -117,7 +117,7 @@ function regex_match_all( $regex, $input, $truncator) {
 	$start = microtime(true);
 	$duration = 0;
 	if( preg_match_all($regex, $input, $matches, PREG_OFFSET_CAPTURE) ) {
-		$duration = microtime(true) - $start;
+		$duration = (microtime(true) - $start) * 1000;
 		$match_count = count($matches[0]);
 		$sub_pattern_count = count($matches);
 		for( $b = 0 ; $b < $match_count ; $b += 1 ) {
@@ -309,7 +309,7 @@ function prepare_regex($regex_pair, $a) {
 	$replace = $regex_pair['replace'];
 	$error = get_parse_regex_error($regex);
 
-	if( array_key_exists('transformWhitespaceCharacters', $regex_pair) && $regex_pair['transformWhitespaceCharacters'] === true ) {
+	if( !array_key_exists('transformWhitespaceCharacters', $regex_pair) || $regex_pair['transformWhitespaceCharacters'] === true ) {
 		$replace = preg_replace(
 			array( '`(?!<\\)\\t`', '`(?!<\\)\\r`', '`(?!<\\)\\n`', '`(?!<\\)\\f`' ),
 			array( "\t", "\r", "\n", "\f" ),
@@ -318,7 +318,7 @@ function prepare_regex($regex_pair, $a) {
 	}
 
 	$do_replace_on_test = function($input) { return $input; };
-	if( array_key_exists('doReplaceOnTest', $regex_pair) && $regex_pair['doReplaceOnTest'] === true ) {
+	if( !array_key_exists('doReplaceOnTest', $regex_pair) || $regex_pair['doReplaceOnTest'] === true ) {
 		$do_replace_on_test = function($input) use ($regex, $replace) {
 			return preg_replace($regex, $replace, $input);
 		};
