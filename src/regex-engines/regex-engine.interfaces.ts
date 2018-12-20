@@ -13,8 +13,9 @@ export enum RegexType {
 }
 
 export interface RegexPair {
-  delimiterClose?: string
+  delimiterClose?: string,
   delimiterOpen?: string,
+  doReplaceOnTest: boolean,
   id: number,
   modifiers: string,
   regex: string,
@@ -29,10 +30,11 @@ export interface RegexMatch {
 }
 
 export interface RegexTestResult {
-  error: string,
+  error: ValidatedRegex,
   inputID: number,
   matches: Array<RegexMatch>,
-  regexID: number
+  regexID: number,
+  executionTime?: number
 }
 
 export interface ConstructedRegex {
@@ -61,7 +63,16 @@ export interface RegexError {
   "regexID"?: number
 }
 
+// export ReplacedInput: Array<string>
+
 export interface ValidatedRegex {
   "valid": boolean,
   "error?": RegexError
+}
+
+export interface APIresponse {
+  'ok': boolean,
+  'code': number,
+  'content': any,
+  'returnType': string
 }

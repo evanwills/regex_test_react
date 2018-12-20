@@ -20,6 +20,7 @@ export const newRegex = (store) => (next) => (action) => {
       pattern: '',
       replace: '',
       delimiter: (triggerRegex !== null) ? triggerRegex.delimiter : currentState.overrideDelimiter,
+      doReplaceOnTest: (triggerRegex !== null) ? triggerRegex.doReplaceOnTest : currentState.doReplaceOnTest,
       modifiers: '',
       isMultiLine: (triggerRegex !== null) ? triggerRegex.isMultiLine : currentState.multiLineRegex,
       multiLineCount: (triggerRegex !== null) ? triggerRegex.multiLineCount : (currentState.multiLineRegex) ? currentState.defaultMultiLineCount : 0,

@@ -6,7 +6,7 @@ export const regexTestReducer = combineReducers({
   autoTestOnBlur: (state:boolean = false) => state,
   defaultMultiLineRegex: (state:boolean = false) => state,
   defaultMultiLineCount: (state:number = 3) => state,
-  doReplaceBeforeNext: (state:boolean = true) => state,
+  doReplaceOnTest: (state:boolean = true) => state,
   input: (state:string = '') => state,
   maxSampleLength: (state:number = 300) => state,
   maxSubPatternLength: (state:number = 300) => state,

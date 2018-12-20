@@ -2,7 +2,7 @@ export const initialState = {
   autoTestOnBlur: false,
   defaultMultiLineRegex: false,
   defaultMultiLineCount: 3,
-  doReplaceBeforeNext: true,
+  doReplaceOnTest: true,
   input: [],
   maxSampleLength: 300,
   maxSubPatternLength: 300,
