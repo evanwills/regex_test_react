@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf8" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width, height=device-height" />
+
+		<meta name="theme-color" content="#3c1053" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="#3c1053" />
+		<title>Regex test - (PCRE) API tester</title>
+	</head>
+	<body>
+		<form method="POST" name="good-request--validation" action="./">
+			<h1>Validation only</h1>
+			<textarea name="regex">{
+				"delimiterClose": "`",
+				"delimiterOpen": "`",
+				"id": 1,
+				"modifiers": "is",
+				"regex": "(?<=^|\\s)t(?<name>he)(?=\\s|$)",
+				"replace": "T\\1 BIG FAT CHICKEN",
+				"transformWhitespaceCharacters": false
+			}</textarea>
+			<button type="submit" name="action" value="validate">Validate</button>
+		</form>
+		<form method="POST" name="good-request--mulit" action="./">
+			<h1>Test &amp; Find/Replace</h1>
+			<textarea name="inputs">["If I'm not using a particular framework, I usually allow some request params to modify the output behavior. It can be useful, generally for quick troubleshooting, to not send a header, or sometimes print_r the data payload to eye ball it (though in most cases, it shouldn't be necessary).","@KrzysztofKalinowski no, the PHP file doesn't need to be UTF-8 encoded. the output MUST be UTF-8 encoded. Those wrong statements doesn't help non-experienced users to learn how to avoid things from breaking, but it helps to grow myths on them and never learning which role does encodings play on streams and how they work."]</textarea>
+			<textarea name="regexes">[{
+				"delimiterClose": "`",
+				"delimiterOpen": "`",
+				"id": 1,
+				"modifiers": "is",
+				"regex": "(?<=^|\\s)t(?<name>he)(?=\\s|$)",
+				"replace": "T\\1 BIG FAT CHICKEN",
+				"transformWhitespaceCharacters": false
+			}]</textarea>
+			<button type="submit" name="action" value="test">Test</button>
+			<button type="submit" name="action" value="replace">Find/Replace</button>
+		</form>
+	</body>
+</html>

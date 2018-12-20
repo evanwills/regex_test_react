@@ -1,4 +1,8 @@
 <?php
+
+ob_start();
+header('Content-Type: application/json');
+
 // ==================================================================
 // START: debug include
 
@@ -61,28 +65,31 @@ if(!function_exists('debug')) {
 require_once('./regex.functions.php');
 $name = '"action"';
 $expected = 'either "validate", "test" or "replace"';
-if( isset($_REQUEST) && array_key_exists('mode', $_REQUEST) ) {
+if( isset($_REQUEST) && array_key_exists('action', $_REQUEST) ) {
 	switch($_REQUEST['action']) {
 		case 'validate':
-			send_good_response(validate_regex($_POST));
+			send_good_response(validate_regex($_POST), 'ValidatedRegex');
 			break;
 
 		case 'test':
 			$truncators = get_truncators($_POST);
-			$input = validate_input($_POST);
+			$inputs = validate_input($_POST);
 			$regexes = validate_regex_pairs($_POST);
-			send_good_response(test_all($inputs, $regexes, $truncators));
+			send_good_response(test_all($inputs, $regexes, $truncators), 'RegexTestResult');
 			break;
 
 		case 'replace':
-			$input = validate_input($_POST);
+			$inputs = validate_input($_POST);
 			$regexes = validate_regex_pairs($_POST);
-			send_good_response(replace_all($inputs, $regexes));
+			send_good_response(replace_all($inputs, $regexes), 'ReplacedOutput');
 			break;
 
 		default:
 			report_bad_request(11, $name, $expected, '"'.$_REQUEST['action'].'"');
 	}
 } else {
-	report_no_mode(10, $name, $expected, 'No action');
+	report_bad_request(10, $name, $expected, 'No action');
 }
+
+ob_end_flush();
+exit;
