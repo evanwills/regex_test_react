@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf8" />
+		<title>Single match</title>
+		<link rel="stylesheet" href="regex-pair.css" />
+		<!-- <link rel="stylesheet" href="regex-pair__DL.css" /> -->
+	</head>
+	<body>
+		<h1>Single match</h1>
+		<section class="regex-test">
+
+			<article class="regex-match">
+				<code class="regex-match__regex"><pre>`(this).*?(?&lt;whole&gt;[a-z]+\s+(whole)).*?([a-z]+)`i	</pre></code>
+				<div class="regex-match__error"></div>
+				<dl class="regex-match__meta">
+					<dt>Execution time</dt>
+					<dd>0.25ms</dd>
+					<dt>Total matches</dt>
+					<dd>3</dd>
+					<dt>Source</dt>
+					<dd><pre class="regex-match__meta__source">This is the whole</pre></dd>
+				</dl>
+				<ol>
+					<li class="single-match">
+						<samp class="single-match__whole">This is the whole</samp>
+						<dl class="single-match__sub single-match__sub--8">
+							<dt>1</dt>
+							<dd>This</dd>
+							<dt><em>2</em> whole</dt>
+							<dd>the whole</dd>
+							<dt>3</dt>
+							<dd>whole</dd>
+						</dl>
+					</li>
+					<li class="single-match">
+						<samp class="single-match__whole">This is the whole match</samp>
+						<dl class="single-match__sub single-match__sub--10">
+							<dt>1</dt>
+							<dd>This</dd>
+							<dt><em>2</em> whole</dt>
+							<dd>the whole</dd>
+							<dt>3</dt>
+							<dd>whole</dd>
+							<dt><em>4</em> matches</dt>
+							<dd>match</dd>
+						</dl>
+					</li>
+					<li class="single-match">
+						<samp class="single-match__whole">This</samp>
+						<dl class="single-match__sub single-match__sub--1">
+							<dt>1</dt>
+							<dd>This</dd>
+						</dl>
+					</li>
+				</ol>
+			</article>
+			<article class="regex-match">
+				<code class="regex-match__regex"><pre>`(this).*?(?&lt;whole&gt;[a-z]+\s+(whole)).*?([a-z]+)`i</pre></code>
+				<div class="regex-match__error"></div>
+				<dl class="regex-match__meta">
+					<dt>Execution time</dt>
+					<dd>0.25ms</dd>
+					<dt>Total matches</dt>
+					<dd>3</dd>
+					<dt>Source</dt>
+					<dd><pre class="regex-match__meta__source">This is the whole</pre></dd>
+				</dl>
+				<ol>
+					<li class="single-match">
+						<samp class="single-match__whole">This is the whole</samp>
+						<dl class="single-match__sub single-match__sub--8">
+							<dt>1</dt>
+							<dd>This</dd>
+							<dt><em>2</em> whole</dt>
+							<dd>the whole</dd>
+							<dt>3</dt>
+							<dd>whole</dd>
+						</dl>
+					</li>
+					<li class="single-match">
+						<samp class="single-match__whole">This is the whole match</samp>
+						<dl class="single-match__sub single-match__sub--10">
+							<dt>1</dt>
+							<dd>This</dd>
+							<dt><em>2</em> whole</dt>
+							<dd>the whole</dd>
+							<dt>3</dt>
+							<dd>whole</dd>
+							<dt><em>4</em> matches</dt>
+							<dd>match</dd>
+						</dl>
+					</li>
+					<li class="single-match">
+						<samp class="single-match__whole">This</samp>
+						<dl class="single-match__sub single-match__sub--1">
+							<dt>1</dt>
+							<dd>This</dd>
+						</dl>
+					</li>
+				</ol>
+			</article>
+		</section>
+
+		<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script src="regex-pair.js" type="text/javascript"></script>
+	</body>
+</html>
