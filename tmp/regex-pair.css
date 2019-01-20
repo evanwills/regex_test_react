@@ -119,7 +119,7 @@ body {
   grid-row-start: 1;
   grid-row-end: 2;
 }
-.regex-pair__extra-action--open {
+.regex-pair__open-close--open {
   align-self: end;
   grid-column-start: 4;
   grid-column-end: 5;
@@ -142,7 +142,7 @@ body {
   grid-row-start: 2;
   grid-row-end: 3;
 }
-.regex-pair--long-line .regex-pair__extra-action--open {
+.regex-pair--long-line .regex-pair__open-close--open {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
@@ -177,7 +177,7 @@ body {
   grid-row-start: 1;
   grid-row-end: 3;
 }
-.regex-pair--multi-line .regex-pair__extra-action--open {
+.regex-pair--multi-line .regex-pair__open-close--open {
   bottom: -0.5rem;
   display: block;
   grid-column-start: 4;
@@ -188,7 +188,7 @@ body {
   transform: translate(0.52rem, -0.54rem);
 }
 
-.regex-pair__extra-action {
+.regex-pair__open-close {
   bottom: 0;
   height: 2rem;
   left: 0;
@@ -196,7 +196,7 @@ body {
   text-indent: -1000rem;
   width: 2rem;
 }
-.regex-pair__extra-action::after {
+.regex-pair__open-close::after {
   bottom: 0;
   height: 2rem;
   left: 0;
@@ -207,10 +207,10 @@ body {
   top: 0;
   width: 2rem;
 }
-.regex-pair__extra-action--open::after {
+.regex-pair__open-close--open::after {
   content: '+';
 }
-.regex-pair__extra-action--close::after {
+.regex-pair__open-close--close::after {
   content: '-';
 }
 
@@ -221,7 +221,7 @@ body {
 .regex-pair__delimiter input {
   width: 2rem;
 }
-.regex-pair__extra-action--close {
+.regex-pair__open-close--close {
   left: auto;
   position: absolute;
   right: 1.05rem;

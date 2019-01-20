@@ -42,7 +42,7 @@ $(document).ready(function () {
   var extraOpen = {}
 
   console.log('document is ready')
-  $('.regex-pair__extra-action').on('click', function () {
+  $('.regex-pair__open-close').on('click', function () {
     var ID = $(this).data('id')
     var extraID = '#regex-pair--' + ID + '__extra'
     var tabIndex = 1
@@ -64,7 +64,7 @@ $(document).ready(function () {
       $('#regex-pair--' + ID + '__delimiter').focus()
     }
   })
-  $('.regex-pair__extra-action--open').trigger('click')
+  $('.regex-pair__open-close--open').trigger('click')
   $('.regex-pair--multi-line .regex-pair__input--find').on('focus', function (e) {
     console.log('focused')
     $(this).parent().parent().find('.regex-pair__modifiers').addClass('regex-pair__modifiers--blured')

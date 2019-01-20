@@ -1,0 +1,31 @@
+
+$background-color: #fff;
+$highlight-background: #def;
+$text-color: #000;
+$seperator-color: #eee;
+
+$colour-danger: #d00;
+$colour-warning: #ffbf00;
+$colour-succeed: #050;
+
+$colour-danger-text: $background-color;
+$colour-danger-text: $background-color;
+$colour-danger-text: $text-color;
+/**
+ * Colour variables
+ *
+ * $background-color: #{$background-color} - default background color
+ * $highlight-background: #{$highlight-background} - background colour for highlighted text
+ * $text-color: #{$text-color} - default colour for text
+ * $seperator-color: #{$seperator-color} - colour for separator lines
+ *
+ * $colour-danger: #{$colour-danger} - colour to identify things that could be dangerous
+ * $colour-warning: #{$colour-warning} - colour to highlight warnings
+ * $colour-succeed: #{$colour-succeed} - colour to highlight success or things that are safe to do.
+ *
+ * $colour-danger-text: #{$colour-danger-text} - text colour for danger blocks
+ * $colour-warning-text: #{$colour-warning-text} - text colour for warning blocks
+ * $colour-success-text: #{$colour-success-text} - text colour for success messages or safe buttons
+ *
+ * Styleguide: Particles.Variables.Colours
+ */

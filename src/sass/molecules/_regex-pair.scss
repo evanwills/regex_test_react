@@ -1,0 +1,434 @@
+/**
+ * Regex Pair
+ *
+ * Defines the layout of a regex find/replace pair and all associated inputs & controls
+ *
+ * markup:
+ *	<button class="regex-pair__add regex-pair__add--before" name="regex-pair__add--before" id="regex-pair__add-between-1">
+ *		Add <span class="sr-only">new regex</span> before
+ *	</button>
+ *	<article id="regex-pair--1" class="regex-pair {{modifier_class}}">
+ *		<main class="regex-pair__main">
+ *			<div class="regex-pair__find">
+ *				<label for="regex-pair--1__replace">Regex</label>
+ *				<input type="text" class="regex-pair__input regex-pair__input--find" name="regex-pair--1__find" id="regex-pair--1__find" aria-describedby="regex-pair--1__error" value="" />
+ *				<span class="regex-pair__error" id="regex-pair__error"></span>
+ *			</div>
+ *			<div class="regex-pair__modifiers">
+ *				<label for="regex-pair--1__modifiers">Modifiers</label>
+ *				<input type="text" class="regex-pair__input regex-pair__input--modifiers" name="regex-pair--1__modifiers" id="regex-pair--1__modifiers" value="" />
+ *			</div>
+ *			<div class="regex-pair__replace">
+ *				<label for="regex-pair--1__replace">Replace</label>
+ *				<input type="text" class="regex-pair__input regex-pair__input--replace" name="regex-pair--1__replace" id="regex-pair--1__replace" value="" />
+ *			</div>
+ *			<button class="regex-pair__open-close regex-pair__open-close--open" name="regex-pair--1__extra-open" id="regex-pair--1__extra-open" data-id="1">Open</button>
+ *		</main>
+ *		<footer class="regex-pair__extra" id="regex-pair--1__extra">
+ *			<div class="regex-pair__extra__inputs">
+ *				<div class="regex-pair__delimiter">
+ *					<label for="regex-pair--1__delimiter">Delimiter</label>
+ *					<input type="text" class="regex-pair__delimiter" name="regex-pair--1__delimiter" id="regex-pair--1__delimiter" value="" />
+ *				</div>
+ *				<label class="regex-pair__transformWhitespaceCharacters">
+ *					<input type="checkbox" name="regex-pair--1__transformWhitespaceCharacters" id=" regex-pair--1__transformWhitespaceCharacters" value="true" />
+ *					Transform escaped whitespace characters in replace string
+ *				</label>
+ *				<label class="regex-pair__doReplaceOnTest">
+ *					<input type="checkbox" name="regex-pair--1__doReplaceOnTest" id=" regex-pair--1__doReplaceOnTest" value="true" />
+ *					Do replace on test
+ *				</label>
+ *			</div>
+ *			<div class="regex-pair__extra__actions">
+ *				<button class="regex-pair__delete" name="regex-pair--1__delete" id="regex-pair--1__delete">Delete this regex</button>
+ *			</div>
+ *			<button class="regex-pair__open-close regex-pair__open-close--close" name="regex-pair--1__extra-close" id="regex-pair--1__extra-close" data-id="1">Close</button>
+ *		</footer>
+ *	</article>
+ *	<button class="regex-pair__add regex-pair__add--between" name="regex-pair__add--between--1-2" id="regex-pair__add--between--1-2">
+ *		Add <span class="sr-only">new regex</span> between
+ *	</button>
+ *	<article id="regex-pair--1" class="regex-pair {{modifier_class}}">
+ *		<main class="regex-pair__main">
+ *			<div class="regex-pair__find">
+ *				<label for="regex-pair--1__replace">Regex</label>
+ *				<input type="text" class="regex-pair__input regex-pair__input--find" name="regex-pair--1__find" id="regex-pair--1__find" aria-describedby="regex-pair--1__error" value="" />
+ *				<span class="regex-pair__error" id="regex-pair__error"></span>
+ *			</div>
+ *			<div class="regex-pair__modifiers">
+ *				<label for="regex-pair--1__modifiers">Modifiers</label>
+ *				<input type="text" class="regex-pair__input regex-pair__input--modifiers" name="regex-pair--1__modifiers" id="regex-pair--1__modifiers" value="" />
+ *			</div>
+ *			<div class="regex-pair__replace">
+ *				<label for="regex-pair--1__replace">Replace</label>
+ *				<input type="text" class="regex-pair__input regex-pair__input--replace" name="regex-pair--1__replace" id="regex-pair--1__replace" value="" />
+ *			</div>
+ *			<button class="regex-pair__open-close regex-pair__open-close--open" name="regex-pair--1__extra-open" id="regex-pair--1__extra-open" data-id="1">Open</button>
+ *		</main>
+ *		<footer class="regex-pair__extra regex-pair__extra--open" id="regex-pair--1__extra">
+ *			<div class="regex-pair__extra__inputs">
+ *				<div class="regex-pair__delimiter">
+ *					<label for="regex-pair--1__delimiter">Delimiter</label>
+ *					<input type="text" class="regex-pair__delimiter" name="regex-pair--1__delimiter" id="regex-pair--1__delimiter" value="" />
+ *				</div>
+ *				<label class="regex-pair__transformWhitespaceCharacters">
+ *					<input type="checkbox" name="regex-pair--1__transformWhitespaceCharacters" id=" regex-pair--1__transformWhitespaceCharacters" value="true" />
+ *					Transform escaped whitespace characters in replace string
+ *				</label>
+ *				<label class="regex-pair__doReplaceOnTest">
+ *					<input type="checkbox" name="regex-pair--1__doReplaceOnTest" id=" regex-pair--1__doReplaceOnTest" value="true" />
+ *					Do replace on test
+ *				</label>
+ *			</div>
+ *			<div class="regex-pair__extra__actions">
+ *				<button class="regex-pair__delete" name="regex-pair--1__delete" id="regex-pair--1__delete">Delete this regex</button>
+ *			</div>
+ *			<button class="regex-pair__open-close regex-pair__open-close--close" name="regex-pair--1__extra-close" id="regex-pair--1__extra-close" data-id="1">Close</button>
+ *		</footer>
+ *	</article>
+ *	<button class="regex-pair__add regex-pair__add--between" name="regex-pair__add--between--1-2" id="regex-pair__add--between--1-2">
+ *		Add <span class="sr-only">new regex</span> between
+ *	</button>
+ *	<article id="regex-pair--6" class="regex-pair regex-pair--multi-line">
+ *		<main class="regex-pair__main">
+ *			<div class="regex-pair__find">
+ *				<label for="regex-pair--6__find">Regex</label>
+ *				<textarea class="regex-pair__input regex-pair__input--find" name="regex-pair--6__find" id="regex-pair--6__find"></textarea>
+ *			</div>
+ *			<div class="regex-pair__modifiers">
+ *				<label for="regex-pair--6__modifiers">Modifiers</label>
+ *				<input type="text" class="regex-pair__input regex-pair__input--modifiers" name="regex-pair--6__modifiers" id="regex-pair--6__modifiers" value="" />
+ *			</div>
+ *			<div class="regex-pair__replace">
+ *				<label for="regex-pair--6__replace">Replace</label>
+ *				<textarea class="regex-pair__input regex-pair__input--replace" name="regex-pair--6__replace" id="regex-pair--6__replace"></textarea>
+ *			</div>
+ *			<button class="regex-pair__open-close regex-pair__open-close--open" name="regex-pair--6__extra-open" id="regex-pair--6__extra-open" data-id="6">Open</button>
+ *		</main>
+ *		<footer class="regex-pair__extra regex-pair__extra--open" id="regex-pair--6__extra">
+ *			<div class="regex-pair__extra__inputs">
+ *				<div class="regex-pair__delimiter">
+ *					<label for="regex-pair--6__delimiter">Delimiter</label>
+ *					<input type="text" class="regex-pair__delimiter" name="regex-pair--6__delimiter" id="regex-pair--6__delimiter" value="" />
+ *				</div>
+ *				<label class="regex-pair__transformWhitespaceCharacters">
+ *					<input type="checkbox" name="regex-pair--6__transformWhitespaceCharacters" id=" regex-pair--6__transformWhitespaceCharacters" value="true" />
+ *					Transform escaped whitespace characters in replace string
+ *				</label>
+ *				<label class="regex-pair__doReplaceOnTest">
+ *					<input type="checkbox" name="regex-pair--6__doReplaceOnTest" id=" regex-pair--6__doReplaceOnTest" value="true" />
+ *					Do replace on test
+ *				</label>
+ *			</div>
+ *			<div class="regex-pair__extra__actions">
+ *				<button class="regex-pair__delete" name="regex-pair--6__delete" id="regex-pair--6__delete">Delete this regex</button>
+ *			</div>
+ *			<button class="regex-pair__open-close regex-pair__open-close--close" name="regex-pair--6__extra-close" id="regex-pair--6__extra-close" data-id="6">Close</button>
+ *		</footer>
+ *	</article>
+ *	<button class="regex-pair__add regex-pair__add--after" name="regex-pair__add--after" id="regex-pair__add--after">
+ *		Add <span class="sr-only">new regex</span> after
+ *	</button>
+ *
+ * .regex-pair--long-line - used when a regex extends beyond the visible area of the input box
+ * .regex-pair--multi-line - used when the x (extended) modifier is set so Regular expressions can span multiple lines (__NOTE:__ the input field type for "Regex" & "Replace" change to a TEXTAREA type in the HTML)
+ *
+ * Styleguide: Molecules.Regex Pair
+ */
+
+.regex-pair {
+  border-top: 0.1rem solid #eee;
+  margin: -1rem 0 -1.1rem 0;
+  padding: 1rem 2rem 1.6rem 1rem;
+  position: relative;
+
+  &:last-of-type {
+    border-bottom: 0.1rem solid #eee;
+  }
+
+  &__main {
+    align-items: end;
+    display: grid;
+    grid-template-columns: 1fr 5rem 1fr 2rem;
+    grid-column-gap: 1rem;
+    box-sizing: content-box;
+    div {
+      padding: .5rem;
+    }
+
+    label {
+      // height: 1px;
+      // width: 1px;
+      // overflow: hidden;
+      // margin: -1px;
+      display: block;
+    }
+  }
+
+  &--long-line .regex-pair__main {
+    grid-template-columns: 1fr 5rem;
+  }
+
+  &--multi-line .regex-pair__main {
+    grid-template-rows: auto 2rem;
+  }
+
+  &::before {
+    bottom: 0;
+    box-shadow: 0.3rem 0.3rem 0.5rem rgba(0,0,0,0.2);
+    content: ' ';
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity 400ms ease-in-out;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    display: block;
+  }
+
+  &__find {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    box-sizing: content-box;
+  }
+
+  &__modifiers {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  &__replace {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  &__open-close--open {
+    align-self: end;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    justify-self: end;
+  }
+
+  &--long-line {
+    .regex-pair__ {
+      &find {
+        grid-column-start: 1;
+        grid-column-end: 2;
+      }
+      &modifiers {
+        grid-column-start: 2;
+        grid-column-end: 3;
+      }
+      &replace {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+      &open-close--open {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+    }
+  }
+
+  &--multi-line {
+    .regex-pair__ {
+      &find {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      }
+      &__modifiers {
+        bottom: 0.07rem;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        position: relative;
+      }
+      &__replace {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      }
+      &open-close--open {
+        bottom: 0;
+        display: block;
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        left: 0.07rem;
+        transform: translate(0.52rem, -0.54rem);
+      }
+    }
+  }
+
+
+  &__extra {
+    background-color: $highlight-background;
+    bottom: 0;
+    // display: grid;
+    // grid-template-columns: 3fr 1fr;
+    // grid-column-gap: 1rem;
+    // grid-row-gap: .5rem;
+    left: 1em;
+    opacity: 0;
+    padding: 0.75rem 9rem 0.75rem 2rem;
+    position: absolute;
+    right: 0.9rem;
+    top: 0;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 300ms ease-in-out, opacity 100ms ease-in-out 200ms;
+    z-index: 15;
+
+    &-action {
+      bottom: 0.5rem;
+      height: 2rem;
+      left: 0.5rem;
+      position: relative;
+      text-indent: -1000rem;
+      width: 2rem;
+
+      &::after {
+        bottom: 0;
+        height: 2rem;
+        left: 0;
+        padding: .3rem 0;
+        position: absolute;
+        right: 0;
+        text-indent: 0;
+        top: 0;
+        width: 2rem;
+      }
+
+      &--open::after { content: '+'; }
+
+      &--close {
+        left: auto;
+        position: absolute;
+        right: 0.6rem;
+        bottom: 2.1rem;
+
+        &::after { content: '-'; }
+      }
+    }
+
+    &__actions {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.65rem;
+      width: 10rem;
+      display: inline-block;
+      text-align: right;
+    }
+
+    &__inputs {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+
+      > * {
+       padding: 0.1rem 0;
+       display: block;
+      }
+
+      > div {
+       padding-left: 0.15rem;
+      }
+    }
+  }
+
+  &.regex-pair__extra--open {
+    opacity: 1;
+    transform: scaleY(1);
+    transition: transform 300ms ease-in-out, opacity 75ms ease-in-out;
+
+    &::before {
+      opacity: 1;
+      transition: opacity 400ms ease-in-out;
+    }
+  }
+
+  &__delimiter {
+    display: inline-block;
+
+    input {
+      width: 2rem;
+    }
+  }
+
+  &__add {
+    font-size: 78%;
+    background-color: $colour-succeed;
+    border: 0.4rem solid #fff;
+    color: #fff;
+    left: 1.2rem;
+    padding: 0.2rem 0.5rem;
+    position: relative;
+    text-shadow: 0 0 0.1rem #000;
+    transform: translateY(2%);
+    z-index: 10;
+
+    ::before {
+      background-color: $colour-succeed;
+      content: '';
+      height: 0.9rem;
+      position: absolute;
+      right: -0.5rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 0.9rem;
+      z-index: -1;
+    }
+
+    &:last-of-type {
+      &::before {
+        bottom: -0.45rem;
+        right: 50%;
+        top: auto;
+        transform: translateX(-50%) rotate(45deg);
+      }
+    }
+
+    &:first-of-type {
+      &::before {
+        right: 50%;
+        top: -0.9rem;
+        transform: translateX(-50%) rotate(45deg);
+      }
+    }
+  }
+
+  &__delete {
+    background-color: #d00;
+    color: #fff;
+    padding: 0.3rem 0.75rem;
+    border: none;
+
+  }
+  textarea {
+    min-height: 4rem;
+  }
+}
+
+
