@@ -7,7 +7,7 @@ body {
 .regex-pair {
   border-top: 0.1rem solid #eee;
   margin: -1rem 0 -1.1rem 0;
-  padding: 1rem 2rem 1.6rem 1rem;
+  padding: 1rem 1rem 1.6rem 1rem;
   position: relative;
 }
 .regex-pair:last-of-type {
@@ -16,27 +16,32 @@ body {
 .regex-pair__main {
   align-items: end;
   display: grid;
-  grid-template-columns: 1fr 5rem 1fr 2rem;
+  grid-template-columns: 1fr 4.2rem 1fr 2rem;
   grid-column-gap: 1rem;
+  grid-row-gap: 0.5rem;
   box-sizing: content-box;
 }
 .regex-pair--long-line .regex-pair__main {
-  grid-template-columns: 1fr 5rem;
+  grid-template-columns: 1fr 4.2rem;
 }
 .regex-pair--multi-line .regex-pair__main {
   grid-template-rows: auto 2rem;
 }
-.regex-pair__main div {
-  padding: .5rem;
-}
+
 .regex-pair__main label {
   /* height: 1px;
   width: 1px;
   overflow: hidden;
-  margin: -1px;
-  display: block; */
+  margin: -1px; */
   display: block;
 }
+.regex-pair__modifiers__label {
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-shadow: 0 0 0.4rem #fff;
+}
+
 .regex-pair__extra {
   background-color: #def;
   bottom: 0;
@@ -44,11 +49,11 @@ body {
   grid-template-columns: 3fr 1fr;
   grid-column-gap: 1rem;
   grid-row-gap: .5rem; */
-  left: 1em;
+  left: 0;
   opacity: 0;
   padding: 0.75rem 9rem 0.75rem 2rem;
   position: absolute;
-  right: 0.9rem;
+  right: 0;
   top: 0;
   transform: scaleY(0);
   transform-origin: bottom;
@@ -81,9 +86,18 @@ body {
   width: 100%;
   padding: 0.3rem 0.5rem;
   display: block;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9375rem;
+  position: relative;
+  right: -0.1rem;
 }
-textarea.regex-pair__input {
+.regex-pair__input--modifiers {
+  text-align: right;
+}
+.regex-pair textarea {
   min-height: 4rem;
+  overflow-y: hidden;
 }
 
 .regex-pair__find {
@@ -143,13 +157,20 @@ textarea.regex-pair__input {
   grid-row-end: 3;
 }
 .regex-pair--multi-line .regex-pair__modifiers {
-  bottom: 0.07rem;
-  grid-column-start: 2;
+  background-color: rgba(255,255,255,0.7);
+  bottom: 0.01rem;
+  box-shadow: -0.3rem -0.3rem 0.5rem rgba(255, 255, 255, 0.7);
   grid-column-end: 3;
-  grid-row-start: 2;
+  grid-column-start: 2;
   grid-row-end: 3;
+  grid-row-start: 2;
   position: relative;
+  right: 0.01rem;
 }
+.regex-pair--multi-line .regex-pair__modifiers--blured {
+  opacity: 0.25;
+}
+
 .regex-pair--multi-line .regex-pair__replace {
   grid-column-start: 3;
   grid-column-end: 5;
@@ -157,20 +178,20 @@ textarea.regex-pair__input {
   grid-row-end: 3;
 }
 .regex-pair--multi-line .regex-pair__extra-action--open {
-  bottom: 0;
+  bottom: -0.5rem;
   display: block;
   grid-column-start: 4;
   grid-column-end: 5;
   grid-row-start: 2;
   grid-row-end: 3;
-  left: 0.07rem;
+  left: -0.5rem;
   transform: translate(0.52rem, -0.54rem);
 }
 
 .regex-pair__extra-action {
-  bottom: 0.5rem;
+  bottom: 0;
   height: 2rem;
-  left: 0.5rem;
+  left: 0;
   position: relative;
   text-indent: -1000rem;
   width: 2rem;
@@ -203,8 +224,8 @@ textarea.regex-pair__input {
 .regex-pair__extra-action--close {
   left: auto;
   position: absolute;
-  right: 0.6rem;
-  bottom: 2.1rem;
+  right: 1.05rem;
+  bottom: 1.6rem;
 }
 .regex-pair__extra__actions {
   position: absolute;
@@ -242,15 +263,34 @@ textarea.regex-pair__input {
   background-color: #050;
   border: 0.4rem solid #fff;
   color: #fff;
-  left: 1.2rem;
+  left: 0.6rem;
   padding: 0.2rem 0.5rem;
   position: relative;
   text-shadow: 0 0 0.1rem #000;
   transform: translateY(2%);
   z-index: 10;
 }
-.regex-pair__add:last-of-type {
-  transform: translateY(-52%);
+.regex-pair__add::before {
+  background-color: #050;
+  content: '';
+  height: 0.9rem;
+  position: absolute;
+  right: -0.5rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 0.9rem;
+  z-index: -1;
+}
+.regex-pair__add:last-of-type::before {
+  bottom: -0.45rem;
+  right: 50%;
+  top: auto;
+  transform: translateX(50%) rotate(45deg);
+}
+.regex-pair__add:first-of-type::before {
+  right: 50%;
+  top: -0.45rem;
+  transform: translateX(50%) rotate(45deg);
 }
 
 .regex-pair__delete {
@@ -261,6 +301,10 @@ textarea.regex-pair__input {
 
 }
 
+.chrome .regex-pair--multi-line .regex-pair__modifiers {
+  bottom: 0.08rem;
+  right: 0;
+}
 
 /* ====================================== */
 

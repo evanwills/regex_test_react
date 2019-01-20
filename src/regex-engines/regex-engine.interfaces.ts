@@ -1,5 +1,15 @@
-export interface PairedDelimter {
-  [index: string]: [string, string];
+export interface APIresponse {
+  'ok': boolean,
+  'code': number,
+  'content': any,
+  'returnType': string
+}
+
+export interface ConstructedRegex {
+  error: ValidatedRegex,
+  find: any,
+  regexID: number,
+  replace: string
 }
 
 export interface DelimPair {
@@ -7,40 +17,15 @@ export interface DelimPair {
   close: string
 }
 
-export enum RegexType {
-  local,
-  remote
+export interface PairedDelimter {
+  [index: string]: [string, string];
 }
 
-export interface RegexPair {
+export interface Regex {
   delimiterClose?: string,
   delimiterOpen?: string,
-  doReplaceOnTest: boolean,
-  id: number,
   modifiers: string,
   regex: string,
-  replace: string,
-  transformWhitespaceCharacters: boolean
-}
-
-export interface RegexMatch {
-  whole: string;
-  parts: any
-  position?: number
-}
-
-export interface RegexTestResult {
-  error: ValidatedRegex,
-  inputID: number,
-  matches: Array<RegexMatch>,
-  regexID: number,
-  executionTime?: number
-}
-
-export interface ConstructedRegex {
-  error: string,
-  find: any,
-  replace: string,
 }
 
 export interface RegexConfig {
@@ -63,16 +48,40 @@ export interface RegexError {
   "regexID"?: number
 }
 
+export interface RegexMatch {
+  whole: string;
+  parts: any
+  position?: number
+}
+
+export interface RegexPair extends Regex {
+  doReplaceOnTest: boolean,
+  id: number,
+  replace: string,
+  transformWhitespaceCharacters: boolean
+}
+
+export interface regexTestGlobal {
+  matches: Array<RegexMatch>,
+  execTime: number
+}
+
+export interface RegexTestResult {
+  error: ValidatedRegex,
+  executionTime?: number,
+  inputID: number,
+  matches: Array<RegexMatch>,
+  regexID: number
+}
+
+export enum RegexType {
+  local,
+  remote
+}
+
 // export ReplacedInput: Array<string>
 
 export interface ValidatedRegex {
   "valid": boolean,
   "error?": RegexError
-}
-
-export interface APIresponse {
-  'ok': boolean,
-  'code': number,
-  'content': any,
-  'returnType': string
 }

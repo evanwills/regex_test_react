@@ -18,7 +18,7 @@ The API handles 3 types of calls:
 `validate` requests have two POST fields:
 
 * "`action`" with a value of "`validate`"
-* "`regex`" containing a JSON object with the following structure 
+* "`regex`" containing a Regex JSON object with the following structure 
 ``` json
 {
   "delimiterClose": "",
@@ -33,7 +33,7 @@ The API handles 3 types of calls:
 * `modifiers` any modifiers (aka flags) to be applied to the regex
 * `regex` the regex itself (without delimiters)
 
-NOTE: open and close delimiters are separated out because some regex engines (like Javascript's RegExp object) don't require delimiters
+NOTE: Open and close delimiters are separated out because some regex engines (like Javascript's RegExp object) don't require delimiters
 
 The API uses whichever parts of the regex object it needs to build what it needs
 
@@ -205,7 +205,7 @@ A `replace` is almost identical to a `test` request except action POST field's v
 ]
 ```
 
-* "`regexes`" containing a JSON array cotaining (RegexPair) objects with the following structure 
+* "`regexes`" containing a JSON array containing (RegexPair) objects with the following structure 
 ``` JSON
 [
   {

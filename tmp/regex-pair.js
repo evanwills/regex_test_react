@@ -1,3 +1,42 @@
+function autoResize () {
+  var main = $(this).parent().parent()
+  var lines = 3
+  var maxHeight = 15
+  var regex = new RegExp('(?:\r\n|\n\r|\r|\n)', 'g')
+
+  $(main).find('textarea').each(function () {
+    var tmp = $(this).val().match(regex)
+    var thisLines = 0
+    var css
+
+    if (tmp !== null) {
+      thisLines = (tmp.length + 1)
+    }
+    if (thisLines > lines) {
+      lines = thisLines
+    }
+
+    css = {
+      'min-height': (lines * 1.175) + 'rem',
+      'overflow-y': 'auto'
+    }
+
+    if (lines >= maxHeight) {
+      css = {
+        'min-height': (maxHeight * 1.175) + 'rem',
+        'overflow-y': 'scroll'
+      }
+    }
+
+    if (lines > 3) {
+      $(main).find('textarea').css(css)
+    } else {
+      $(main).find('textarea').removeAttr('style')
+    }
+    console.log(lines)
+  })
+}
+
 $(document).ready(function () {
   'use strict'
   var extraOpen = {}
@@ -26,4 +65,18 @@ $(document).ready(function () {
     }
   })
   $('.regex-pair__extra-action--open').trigger('click')
+  $('.regex-pair--multi-line .regex-pair__input--find').on('focus', function (e) {
+    console.log('focused')
+    $(this).parent().parent().find('.regex-pair__modifiers').addClass('regex-pair__modifiers--blured')
+  })
+
+  $('.regex-pair--multi-line .regex-pair__input--find').on('blur', function (e) {
+    console.log('blurred')
+    $(this).parent().parent().find('.regex-pair__modifiers').removeClass('regex-pair__modifiers--blured')
+  })
+
+  // $('.regex-pair--multi-line').autoResize()
+
+  $('.regex-pair--multi-line textarea').on('keyup', autoResize)
+  $('.regex-pair--multi-line textarea').trigger('keyup')
 })

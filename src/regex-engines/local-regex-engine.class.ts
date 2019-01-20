@@ -1,6 +1,6 @@
 import {XRegExp} from 'xregexp'
 import {RegexEngine} from './regex-engine.class'
-import {DelimPair, RegexPair, ConstructedRegex, RegexTestResult, RegexMatch} from './regex-engine.interfaces'
+import {DelimPair, RegexPair, ConstructedRegex, RegexTestResult, RegexMatch, ValidatedRegex, regexTestGlobal} from './regex-engine.interfaces'
 
 
 abstract class LocalRegex extends RegexEngine {
@@ -22,7 +22,7 @@ abstract class LocalRegex extends RegexEngine {
     for (let a = 0; a < input.length; a += 1) {
       let tmp = input[a];
       for (let b = 0; b < constructedRegexes.length; b += 1) {
-        if (constructedRegexes[b].error === '') {
+        if (constructedRegexes[b].error['valid'] === true) {
           tmp = tmp.replace(
             constructedRegexes[b].find,
             constructedRegexes[b].replace
@@ -42,17 +42,20 @@ abstract class LocalRegex extends RegexEngine {
     for (let a = 0; a < input.length; a += 1) {
       let tmp = input[a];
       for (let b = 0; b < constructedRegexes.length; b += 1) {
-        let error = '';
-        let results = []
-        if (constructedRegexes[b].error !== '') {
-          error = constructedRegexes[b].error;
-        } else {
+        let error:ValidatedRegex = constructedRegexes[b].error;
+        let results:regexTestGlobal
+        if (constructedRegexes[b].error['valid'] !== false) {
           if (constructedRegexes[b].find.global === true) {
             results = this._regexTestGlobal(constructedRegexes[b].find, tmp)
           } else {
+            let startTime = Date.now();
             let matches = constructedRegexes[b].find.exec(tmp);
+            let execTime = Date.now() - startTime;
             if (matches !== null) {
-              results = [this._regexTestInner(matches)]
+              results = {
+                matches: [this._regexTestInner(matches)],
+                execTime: execTime
+              }
             }
           }
 
@@ -66,9 +69,10 @@ abstract class LocalRegex extends RegexEngine {
 
         output.push({
           error: error,
+          executionTime: results['execTime'],
           inputID: a,
-          matches: results,
-          regexID: b
+          matches: results['matches'],
+          regexID: constructedRegexes[b].regexID
         });
       }
     }
@@ -86,15 +90,24 @@ abstract class LocalRegex extends RegexEngine {
     let output = [];
     for (let a = 0; a < regexes.length; a += 1) {
       let tmpRegexp;
-      let error = '';
+      let isValid = {
+        valid: true
+      }
       try {
         tmpRegexp = this._getRegexObject(regexes[a].regex, regexes[a].modifiers);
       } catch(e) {
-        error = e;
+        isValid['error'] = {
+          rawMessage: e,
+          message: '',
+          offset: -1,
+          badCharacter: '',
+          regexID: regexes[a].id
+        };
       }
       output.push({
-        error: error,
+        error: isValid,
         find: tmpRegexp,
+        regexID: regexes[a].id,
         replace: regexes[a].replace
       })
     }
@@ -102,7 +115,7 @@ abstract class LocalRegex extends RegexEngine {
   }
 
   protected _getRegexObject(regex: string, modifiers: string) : RegExp {
-    let output;
+    let output : RegExp;
     try {
       output = new RegExp('');
     } catch (e) {
@@ -113,17 +126,25 @@ abstract class LocalRegex extends RegexEngine {
 
   /**
    * _regexTestGlobal() builds an array of RegexMatch objects created by a RegExp object with the Global flag set
+   *
    * @param regex RegExp object
    * @param input string to be tested against the regex
    */
-  protected _regexTestGlobal(regex: RegExp, input: string) : Array<RegexMatch> {
+  protected _regexTestGlobal(regex: RegExp, input: string) : regexTestGlobal {
     let output = []
     // let output2 = []
     let matches
+    let ellapsedTime = 0;
+    let startTime = Date.now();
     while ((matches = regex.exec(input)) !== null) {
+      ellapsedTime += (Date.now() - startTime);
       output.push(this._regexTestInner(matches))
+      startTime = Date.now();
     }
-    return output
+    return {
+      matches: output,
+      execTime: ellapsedTime
+    }
   }
 
   /**
