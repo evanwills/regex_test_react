@@ -240,6 +240,12 @@ body {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  column-count: 2;
+  column-gap: 2rem;
+}
+
+.regex-pair--long-line .regex-pair__extra__inputs, .regex-pair--multi-line .regex-pair__extra__inputs {
+  column-count: 1;
 }
 
 .regex-pair__extra__inputs > * {
@@ -300,6 +306,14 @@ body {
   border: none;
 
 }
+.regex-pair__label--checkbox {
+  line-height: 1.1rem;
+  padding-left: 1.5rem;
+  padding-top: 0.3rem;
+  text-indent: -1.625rem;
+  /* overflow-y: auto */
+}
+
 
 .chrome .regex-pair--multi-line .regex-pair__modifiers {
   bottom: 0.08rem;

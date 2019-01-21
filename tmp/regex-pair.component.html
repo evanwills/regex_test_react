@@ -61,13 +61,17 @@ expanded layout
 						<label for="regex-pair--1__delimiter">Delimiter</label>
 						<input type="text" class="regex-pair__delimiter" name="regex-pair--1__delimiter" id="regex-pair--1__delimiter" value="" />
 					</div>
-					<label class="regex-pair__transformWhitespaceCharacters">
+					<label class="regex-pair__label--checkbox regex-pair__transformWhitespaceCharacters">
 						<input type="checkbox" name="regex-pair--1__transformWhitespaceCharacters" id=" regex-pair--1__transformWhitespaceCharacters" value="true" />
 						Transform escaped whitespace characters in replace string
 					</label>
-					<label class="regex-pair__doReplaceOnTest">
+					<label class="regex-pair__label--checkbox regex-pair__doReplaceOnTest">
 						<input type="checkbox" name="regex-pair--1__doReplaceOnTest" id=" regex-pair--1__doReplaceOnTest" value="true" />
 						Do replace on test
+					</label>
+					<label class="regex-pair__label--checkbox regex-pair__longLine">
+						<input type="checkbox" class="regex-pair__longLine" name="regex-pair--1__longLine" id=" regex-pair--1__longLine" class="regex-pair__longLine" value="true" data-id="1" />
+						Long line (single column)
 					</label>
 				</div>
 				<div class="regex-pair__extra__actions">
@@ -101,13 +105,17 @@ expanded layout
 						<label for="regex-pair--2__delimiter">Delimiter</label>
 						<input type="text" class="regex-pair__delimiter" name="regex-pair--2__delimiter" id="regex-pair--2__delimiter" value="" />
 					</div>
-					<label class="regex-pair__transformWhitespaceCharacters">
+					<label class="regex-pair__label--checkbox regex-pair__transformWhitespaceCharacters">
 						<input type="checkbox" name="regex-pair--2__transformWhitespaceCharacters" id=" regex-pair--2__transformWhitespaceCharacters" value="true" />
 						Transform escaped whitespace characters in replace string
 					</label>
-					<label class="regex-pair__doReplaceOnTest">
+					<label class="regex-pair__label--checkbox regex-pair__doReplaceOnTest">
 						<input type="checkbox" name="regex-pair--2__doReplaceOnTest" id=" regex-pair--2__doReplaceOnTest" value="true" />
 						Do replace on test
+					</label>
+					<label class="regex-pair__label--checkbox regex-pair__longLine">
+						<input type="checkbox" class="regex-pair__longLine" name="regex-pair--2__longLine" id=" regex-pair--2__longLine" class="regex-pair__longLine" value="true" checked="checked" data-id="2" />
+						Long line (single column)
 					</label>
 				</div>
 				<div class="regex-pair__extra__actions">
@@ -128,12 +136,12 @@ in a regular expression
 with many more than three lines.
 It will have about seven
 lines in total when I finish
-putting all this rubish in the box. But I need more characters on this second last line to test if the text shaddow on modifiers
+putting all this rubbish in the box. But I need more characters on this second last line to test if the text shadow on modifiers
 really work as it is intended</textarea>
 				</div>
 				<div class="regex-pair__modifiers">
 					<label for="regex-pair--3__modifiers" class="regex-pair__modifiers__label">Modifiers</label>
-					<input type="text" class="regex-pair__input regex-pair__input--modifiers" name="regex-pair--3__modifiers" id="regex-pair--3__modifiers" value="" />
+					<input type="text" class="regex-pair__input regex-pair__input--modifiers" name="regex-pair--3__modifiers" id="regex-pair--3__modifiers" value="igm" />
 				</div>
 				<div class="regex-pair__replace">
 					<label for="regex-pair--3__replace">Replace</label>
@@ -147,13 +155,17 @@ really work as it is intended</textarea>
 						<label for="regex-pair--3__delimiter">Delimiter</label>
 						<input type="text" class="regex-pair__delimiter" name="regex-pair--3__delimiter" id="regex-pair--3__delimiter" value="" />
 					</div>
-					<label class="regex-pair__transformWhitespaceCharacters">
+					<label class="regex-pair__label--checkbox regex-pair__transformWhitespaceCharacters">
 						<input type="checkbox" name="regex-pair--3__transformWhitespaceCharacters" id=" regex-pair--3__transformWhitespaceCharacters" value="true" />
 						Transform escaped whitespace characters in replace string
 					</label>
-					<label class="regex-pair__doReplaceOnTest">
+					<label class="regex-pair__label--checkbox regex-pair__doReplaceOnTest">
 						<input type="checkbox" name="regex-pair--3__doReplaceOnTest" id=" regex-pair--3__doReplaceOnTest" value="true" />
 						Do replace on test
+					</label>
+					<label class="regex-pair__label--checkbox regex-pair__longLine">
+						<input type="checkbox" class="regex-pair__longLine" name="regex-pair--3__longLine" id=" regex-pair--3__longLine" class="regex-pair__longLine" value="true" data-id="3" />
+						Long line (single column)
 					</label>
 				</div>
 				<div class="regex-pair__extra__actions">
@@ -165,36 +177,46 @@ really work as it is intended</textarea>
 
 		<button class="regex-pair__add regex-pair__add--between" name="regex-pair__add--between--3-4" id="regex-pair__add--between--3-4">Add <span class="sr-only">new regex</span> between</button>
 
-		<article id="regex-pair--4" class="regex-pair">
+		<article id="regex-pair--4" class="regex-pair regex-pair--long-line">
 			<main class="regex-pair__main">
 				<div class="regex-pair__find">
-					<label for="regex-pair--4__replace">Regex</label>
-					<input type="text" class="regex-pair__input regex-pair__input--find" name="regex-pair--4__find" id="regex-pair--4__find" aria-describedby="regex-pair--4__error" value="" />
-					<span class="regex-pair__error" id="regex-pair__error"></span>
+					<label for="regex-pair--4__find">Regex</label>
+					<textarea class="regex-pair__input regex-pair__input--find" name="regex-pair--4__find" id="regex-pair--4__find">this is a line
+in a regular expression
+with many more than three lines.
+It will have about seven
+lines in total when I finish
+putting all this rubbish in the box. But I need more characters on this
+second last line to test if the text shadow on modifiers
+really work as it is intended</textarea>
 				</div>
 				<div class="regex-pair__modifiers">
 					<label for="regex-pair--4__modifiers" class="regex-pair__modifiers__label">Modifiers</label>
-					<input type="text" class="regex-pair__input regex-pair__input--modifiers" name="regex-pair--4__modifiers" id="regex-pair--4__modifiers" value="" />
+					<input type="text" class="regex-pair__input regex-pair__input--modifiers" name="regex-pair--3__modifiers" id="regex-pair--4__modifiers" value="igm" />
 				</div>
 				<div class="regex-pair__replace">
 					<label for="regex-pair--4__replace">Replace</label>
-					<input type="text" class="regex-pair__input regex-pair__input--replace" name="regex-pair--4__replace" id="regex-pair--4__replace" value="" />
+					<textarea class="regex-pair__input regex-pair__input--replace" name="regex-pair--4__replace" id="regex-pair--4__replace"></textarea>
 				</div>
 				<button class="regex-pair__open-close regex-pair__open-close--open" name="regex-pair--4__extra-open" id="regex-pair--4__extra-open" data-id="4">Open</button>
 			</main>
 			<footer class="regex-pair__extra regex-pair__extra--open" id="regex-pair--4__extra">
 				<div class="regex-pair__extra__inputs">
 					<div class="regex-pair__delimiter">
-						<label for="regex-pair--4__delimiter">Delimiter</label>
+						<label for="regex-pair--3__delimiter">Delimiter</label>
 						<input type="text" class="regex-pair__delimiter" name="regex-pair--4__delimiter" id="regex-pair--4__delimiter" value="" />
 					</div>
-					<label class="regex-pair__transformWhitespaceCharacters">
+					<label class="regex-pair__label--checkbox regex-pair__transformWhitespaceCharacters">
 						<input type="checkbox" name="regex-pair--4__transformWhitespaceCharacters" id=" regex-pair--4__transformWhitespaceCharacters" value="true" />
 						Transform escaped whitespace characters in replace string
 					</label>
-					<label class="regex-pair__doReplaceOnTest">
+					<label class="regex-pair__label--checkbox regex-pair__doReplaceOnTest">
 						<input type="checkbox" name="regex-pair--4__doReplaceOnTest" id=" regex-pair--4__doReplaceOnTest" value="true" />
 						Do replace on test
+					</label>
+					<label class="regex-pair__label--checkbox regex-pair__longLine">
+						<input type="checkbox" class="regex-pair__longLine" name="regex-pair--4__longLine" id=" regex-pair--4__longLine" value="true" checked="checked" data-id="4" />
+						Long line (single column)
 					</label>
 				</div>
 				<div class="regex-pair__extra__actions">
@@ -203,89 +225,6 @@ really work as it is intended</textarea>
 				<button class="regex-pair__open-close regex-pair__open-close--close" name="regex-pair--4__extra-close" id="regex-pair--4__extra-close" data-id="4">Close</button>
 			</footer>
 		</article>
-
-		<button class="regex-pair__add regex-pair__add--between" name="regex-pair__add--between--4-5" id="regex-pair__add--between--4-5">Add <span class="sr-only">new regex</span> between</button>
-
-		<article id="regex-pair--5" class="regex-pair regex-pair--long-line">
-			<main class="regex-pair__main">
-				<div class="regex-pair__find">
-					<label for="regex-pair--5__find">Regex</label>
-					<input type="text" class="regex-pair__input regex-pair__input--find" name="regex-pair--5__find" id="regex-pair--5__find" value="" />
-				</div>
-				<div class="regex-pair__modifiers">
-					<label for="regex-pair--5__modifiers" class="regex-pair__modifiers__label">Modifiers</label>
-					<input type="text" class="regex-pair__input regex-pair__input--modifiers" name="regex-pair--5__modifiers" id="regex-pair--5__modifiers" value="" />
-				</div>
-				<div class="regex-pair__replace">
-					<label for="regex-pair--5__replace">Replace</label>
-					<input type="text" class="regex-pair__input regex-pair__input--replace" name="regex-pair--5__replace" id="regex-pair--5__replace" value="" />
-				</div>
-				<button class="regex-pair__open-close regex-pair__open-close--open" name="regex-pair--5__extra-open" id="regex-pair--5__extra-open" data-id="5">Open</button>
-			</main>
-			<footer class="regex-pair__extra regex-pair__extra--open" id="regex-pair--5__extra">
-				<div class="regex-pair__extra__inputs">
-					<div class="regex-pair__delimiter">
-						<label for="regex-pair--5__delimiter">Delimiter</label>
-						<input type="text" class="regex-pair__delimiter" name="regex-pair--5__delimiter" id="regex-pair--5__delimiter" value="" />
-					</div>
-					<label class="regex-pair__transformWhitespaceCharacters">
-						<input type="checkbox" name="regex-pair--5__transformWhitespaceCharacters" id=" regex-pair--5__transformWhitespaceCharacters" value="true" />
-						Transform escaped whitespace characters in replace string
-					</label>
-					<label class="regex-pair__doReplaceOnTest">
-						<input type="checkbox" name="regex-pair--5__doReplaceOnTest" id=" regex-pair--5__doReplaceOnTest" value="true" />
-						Do replace on test
-					</label>
-				</div>
-				<div class="regex-pair__extra__actions">
-					<button class="regex-pair__delete" name="regex-pair--5__delete" id="regex-pair--5__delete">Delete this regex</button>
-				</div>
-				<button class="regex-pair__open-close regex-pair__open-close--close" name="regex-pair--5__extra-close" id="regex-pair--5__extra-close" data-id="5">Close</button>
-			</footer>
-		</article>
-
-		<button class="regex-pair__add regex-pair__add--between" name="regex-pair__add--between--5-6" id="regex-pair__add--between--5-6">Add <span class="sr-only">new regex</span> between</button>
-
-		<article id="regex-pair--6" class="regex-pair regex-pair--multi-line">
-			<main class="regex-pair__main">
-				<div class="regex-pair__find">
-					<label for="regex-pair--6__find">Regex</label>
-					<textarea class="regex-pair__input regex-pair__input--find" name="regex-pair--6__find" id="regex-pair--6__find"></textarea>
-				</div>
-				<div class="regex-pair__modifiers">
-					<label for="regex-pair--6__modifiers" class="regex-pair__modifiers__label">Modifiers</label>
-					<input type="text" class="regex-pair__input regex-pair__input--modifiers" name="regex-pair--6__modifiers" id="regex-pair--6__modifiers" value="" />
-				</div>
-				<div class="regex-pair__replace">
-					<label for="regex-pair--6__replace">Replace</label>
-					<textarea class="regex-pair__input regex-pair__input--replace" name="regex-pair--6__replace" id="regex-pair--6__replace"></textarea>
-				</div>
-				<button class="regex-pair__open-close regex-pair__open-close--open" name="regex-pair--6__extra-open" id="regex-pair--6__extra-open" data-id="6">Open</button>
-			</main>
-			<footer class="regex-pair__extra regex-pair__extra--open" id="regex-pair--6__extra">
-				<div class="regex-pair__extra__inputs">
-					<div class="regex-pair__delimiter">
-						<label for="regex-pair--6__delimiter">Delimiter</label>
-						<input type="text" class="regex-pair__delimiter" name="regex-pair--6__delimiter" id="regex-pair--6__delimiter" value="" />
-					</div>
-					<label class="regex-pair__transformWhitespaceCharacters">
-						<input type="checkbox" name="regex-pair--6__transformWhitespaceCharacters" id=" regex-pair--6__transformWhitespaceCharacters" value="true" />
-						Transform escaped whitespace characters in replace string
-					</label>
-					<label class="regex-pair__doReplaceOnTest">
-						<input type="checkbox" name="regex-pair--6__doReplaceOnTest" id=" regex-pair--6__doReplaceOnTest" value="true" />
-						Do replace on test
-					</label>
-				</div>
-				<div class="regex-pair__extra__actions">
-					<button class="regex-pair__delete" name="regex-pair--6__delete" id="regex-pair--6__delete">Delete this regex</button>
-				</div>
-				<button class="regex-pair__open-close regex-pair__open-close--close" name="regex-pair--6__extra-close" id="regex-pair--6__extra-close" data-id="6">Close</button>
-			</footer>
-		</article>
-
-
-
 
 		<button class="regex-pair__add regex-pair__add--after" name="regex-pair__add--after" id="regex-pair__add--after">Add <span class="sr-only">new regex</span> after</button>
 
