@@ -4,6 +4,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.sr-only {
+  display: inline-block;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  margin-left: -1px;
+}
+
 .regex-pair {
   border-top: 0.1rem solid #eee;
   margin: -1rem 0 -1.1rem 0;
@@ -14,18 +22,7 @@ body {
   border-bottom: 0.1rem solid #eee;
 }
 .regex-pair__main {
-  align-items: end;
-  display: grid;
-  grid-template-columns: 1fr 4.2rem 1fr 2rem;
-  grid-column-gap: 1rem;
-  grid-row-gap: 0.5rem;
   box-sizing: content-box;
-}
-.regex-pair--long-line .regex-pair__main {
-  grid-template-columns: 1fr 4.2rem;
-}
-.regex-pair--multi-line .regex-pair__main {
-  grid-template-rows: auto 2rem;
 }
 
 .regex-pair__main label {
@@ -34,12 +31,6 @@ body {
   overflow: hidden;
   margin: -1px; */
   display: block;
-}
-.regex-pair__modifiers__label {
-  text-align: center;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  text-shadow: 0 0 0.4rem #fff;
 }
 
 .regex-pair__extra {
@@ -101,92 +92,9 @@ body {
 }
 
 .regex-pair__find {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
   box-sizing: content-box;
 }
-.regex-pair__modifiers {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-.regex-pair__replace {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-.regex-pair__open-close--open {
-  align-self: end;
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  justify-self: end;
-}
 
-.regex-pair--long-line  .regex-pair__find {
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
-.regex-pair--long-line .regex-pair__modifiers {
-  grid-column-start: 2;
-  grid-column-end: 3;
-}
-.regex-pair--long-line .regex-pair__replace {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-.regex-pair--long-line .regex-pair__open-close--open {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-
-.regex-pair--multi-line .regex-pair__find {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 3;
-}
-.regex-pair--multi-line .regex-pair__modifiers {
-  background-color: rgba(255,255,255,0.7);
-  bottom: 0.01rem;
-  box-shadow: -0.3rem -0.3rem 0.5rem rgba(255, 255, 255, 0.7);
-  grid-column-end: 3;
-  grid-column-start: 2;
-  grid-row-end: 3;
-  grid-row-start: 2;
-  position: relative;
-  right: 0.01rem;
-}
-.regex-pair--multi-line .regex-pair__modifiers--blured {
-  opacity: 0.25;
-}
-
-.regex-pair--multi-line .regex-pair__replace {
-  grid-column-start: 3;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 3;
-}
-.regex-pair--multi-line .regex-pair__open-close--open {
-  bottom: -0.5rem;
-  display: block;
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  left: -0.5rem;
-  transform: translate(0.52rem, -0.54rem);
-}
 
 .regex-pair__open-close {
   bottom: 0;
@@ -236,7 +144,7 @@ body {
   text-align: right;
 }
 
-.regex-pair__extra__inputs {
+/* .regex-pair__extra__inputs {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -246,7 +154,7 @@ body {
 
 .regex-pair--long-line .regex-pair__extra__inputs, .regex-pair--multi-line .regex-pair__extra__inputs {
   column-count: 1;
-}
+} */
 
 .regex-pair__extra__inputs > * {
   padding: 0.1rem 0;
@@ -256,14 +164,6 @@ body {
   padding-left: 0.15rem;
 }
 
-.sr-only {
-  display: inline-block;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  margin-left: -1px;
-
-}
 .regex-pair__add {
   font-size: 78%;
   background-color: #050;
@@ -320,13 +220,182 @@ body {
   right: 0;
 }
 
-/* ====================================== */
+
+/*
+ *  END:  PAIR: general styling
+ * ----------------------------------------------
+ * START: PAIR: grid styling
+ */
+
+@media screen and (min-width: 25rem) {
+  .regex-pair__main {
+    align-items: end;
+    display: grid;
+    grid-template-columns: 1fr 4.2rem;
+    grid-column-gap: 1rem;
+    grid-row-gap: 0.5rem;
+  }
+
+  .regex-pair__find {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  .regex-pair__modifiers {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+  .regex-pair__replace {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    /* grid-row-start: 2;
+    grid-row-end: 3; */
+  }
+  .regex-pair__open-close--open {
+    align-self: end;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    /* grid-row-start: 2;
+    grid-row-end: 3; */
+    justify-self: end;
+  }
+  .regex-pair__modifiers__label {
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-shadow: 0 0 0.4rem #fff;
+  }
+}
+
+
+@media screen and (min-width: 43rem) {
+  .regex-pair--multi-line .regex-pair__main {
+    grid-template-rows: auto 2rem;
+  }
+  .regex-pair__main {
+    align-items: end;
+    display: grid;
+    grid-template-columns: 1fr 4.2rem 1fr 2rem;
+    grid-column-gap: 1rem;
+    grid-row-gap: 0.5rem;
+  }
+  .regex-pair--long-line .regex-pair__main {
+    grid-template-columns: 1fr 4.2rem;
+  }
+  .regex-pair__find {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    /* grid-row-start: 1;
+    grid-row-end: 2; */
+    box-sizing: content-box;
+  }
+  .regex-pair__modifiers {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    /* grid-row-start: 1;
+    grid-row-end: 2; */
+  }
+  .regex-pair__replace {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    /* grid-row-start: 1;
+    grid-row-end: 2; */
+  }
+  .regex-pair__open-close--open {
+    align-self: end;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    /* grid-row-start: 1;
+    grid-row-end: 2; */
+    justify-self: end;
+  }
+
+
+  .regex-pair--long-line .regex-pair__find {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  .regex-pair--long-line .regex-pair__modifiers {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+  .regex-pair--long-line .regex-pair__replace {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    /* grid-row-start: 2;
+    grid-row-end: 3; */
+  }
+  .regex-pair--long-line .regex-pair__open-close--open {
+    align-self: end;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    /* grid-row-start: 2;
+    grid-row-end: 3; */
+    justify-self: end;
+  }
+
+  .regex-pair--multi-line .regex-pair__find {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  .regex-pair--multi-line .regex-pair__modifiers {
+    bottom: 0.01rem;
+    box-shadow: -0.3rem -0.3rem 0.5rem rgba(255, 255, 255, 0.7);
+    grid-column-end: 3;
+    grid-column-start: 2;
+    grid-row-end: 3;
+    grid-row-start: 2;
+    position: relative;
+    right: 0.01rem;
+  }
+
+  .regex-pair--multi-line .regex-pair__replace {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  .regex-pair--multi-line .regex-pair__open-close--open {
+    bottom: -0.5rem;
+    display: block;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    left: -0.5rem;
+    transform: translate(0.52rem, -0.54rem);
+  }
+
+  .regex-pair__extra__inputs {
+    align-items: start;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: 2fr 3fr;
+    grid-column-gap: 1rem;
+    grid-row-gap: 0.5rem;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+/*
+ *  END:  PAIR: grid styling
+ * ----------------------------------------------
+ * START: MATCH: general styling
+ */
+
+pre {
+  white-space: pre-wrap;
+}
 
 .single-match {
   font-family: 'Courier New', Courier, monospace;
 }
 .single-match__sub {
   line-height: 1rem;
+  margin-left: -2.5rem;
 }
 
 .single-match__sub dt {
@@ -413,37 +482,19 @@ body {
 }
 
 .regex-match__meta {
-  align-items: end;
+  align-items: start;
   display: grid;
-  grid-template-columns: 7.5rem 1fr 7rem 1fr;
+  grid-template-columns: 7.5rem 1fr;
   grid-row-gap: 0.35rem;
 }
 .regex-match__meta dd { margin: 0; padding-left: 0.5rem; }
 .regex-match__meta dt { font-weight: bold; text-align: right; }
 .regex-match__meta dt::after { content: ':'; }
-.regex-match__meta dt:first-of-type {
+.regex-match__meta dt {
   grid-column-start: 1; grid-column-end: 2;
-  grid-row-start: 1; grid-row-end: 2;
 }
-.regex-match__meta dd:first-of-type {
+.regex-match__meta dd {
   grid-column-start: 2; grid-column-end: 3;
-  grid-row-start: 1; grid-row-end: 2;
-}
-.regex-match__meta dt:nth-of-type(2) {
-  grid-column-start: 3; grid-column-end: 4;
-  grid-row-start: 1; grid-row-end: 2;
-}
-.regex-match__meta dd:nth-of-type(2) {
-  grid-column-start: 4; grid-column-end: 5;
-  grid-row-start: 1; grid-row-end: 2;
-}
-.regex-match__meta dt:nth-of-type(3) {
-  grid-column-start: 1; grid-column-end: 2;
-  grid-row-start: 2; grid-row-end: 3;
-}
-.regex-match__meta dd:nth-of-type(3) {
-  grid-column-start: 2; grid-column-end: 5;
-  grid-row-start: 2; grid-row-end: 3;
 }
 
 .regex-match__meta__source {
@@ -453,3 +504,52 @@ body {
   margin-top: 0;
   font-size: 1rem;
 }
+
+/*
+ *  END:  MATCH: general styling
+ * ----------------------------------------------
+ * START: MATCH: grid styling
+ */
+
+@media screen and (min-width: 30rem) {
+  .single-match__sub {
+    margin-left: auto;
+  }
+
+  .regex-match__meta {
+    grid-template-columns: 7.5rem 1fr 7rem 1fr;
+  }
+  .regex-match__meta dd { margin: 0; padding-left: 0.5rem; }
+  .regex-match__meta dt { font-weight: bold; text-align: right; }
+  .regex-match__meta dt::after { content: ':'; }
+  .regex-match__meta dt:first-of-type {
+    grid-column-start: 1; grid-column-end: 2;
+    grid-row-start: 1; grid-row-end: 2;
+  }
+  .regex-match__meta dd:first-of-type {
+    grid-column-start: 2; grid-column-end: 3;
+    grid-row-start: 1; grid-row-end: 2;
+  }
+  .regex-match__meta dt:nth-of-type(2) {
+    grid-column-start: 3; grid-column-end: 4;
+    grid-row-start: 1; grid-row-end: 2;
+  }
+  .regex-match__meta dd:nth-of-type(2) {
+    grid-column-start: 4; grid-column-end: 5;
+    grid-row-start: 1; grid-row-end: 2;
+  }
+  .regex-match__meta dt:nth-of-type(3) {
+    grid-column-start: 1; grid-column-end: 2;
+    grid-row-start: 2; grid-row-end: 3;
+  }
+  .regex-match__meta dd:nth-of-type(3) {
+    grid-column-start: 2; grid-column-end: 5;
+    grid-row-start: 2; grid-row-end: 3;
+  }
+}
+
+/*
+ *  END:  MATCH: grid styling
+ * ----------------------------------------------
+ */
+
