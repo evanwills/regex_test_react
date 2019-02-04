@@ -1,21 +1,28 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import { ErrorMessage, getErrorMeta} from './errorMsg';
+import { TextInputField } from '../generic/text-field';
 
-import { makeErrorMessage, getErrorMeta } from './makeErrorMsg'
 
 
-export const makeDelimiter = (id: number, delimiter: string, pattern: string, error: string = null) => {
-  const errorMeta = getErrorMeta(id, error);
-  return `
+export const Delimiter = ({pairID, delimiter, pattern, error}) => {
+  const ID = `regex-pair--{id}__delimiter`;
+  const errorMeta = getErrorMeta(ID, error);
+  const PATTERN = '^' + pattern + '$';
+  return (
         <div className="regex-pair__delimiter{errorMeta.errorClass}">
           <label for="regex-pair--{id}__delimiter">Delimiter</label>
-          <input type="text" className="regex-pair__delimiter{errorMeta.errorClass}"
-                 name="regex-pair--{id}__delimiter"
-                 id="regex-pair--{id}__delimiter"
-                 value="{delimiter}"
-                 pattern="^{pattern}$"
-                 {errorMeta.describedBy} />
-          {makeErrorMessage(errorMeta.describedByID, error)}
+          <TextInputField
+            labelID={ID}
+            fieldName="regex-pair__delimiter"
+            value={delimiter}
+            pattern={PATTERN}
+            describedByID={errorMeta.describedByID}
+            disabled={false}
+            keyUpFunc={false} // this needs to be a redux action generator function.
+            />
+          <ErrorMessage describedByID={errorMeta.describedByID} error={error} />
         </div>
-  `;
+  );
 }
+
+// <ErrorMessage describedByID={ID} errorMsg={error} />

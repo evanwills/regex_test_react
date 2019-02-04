@@ -1,15 +1,25 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { TextInputField } from '../generic/text-field';
+import { ErrorMessage, getErrorMeta } from './errorMsg'
 
-import { makeErrorMessage, getErrorMeta } from './makeErrorMsg'
 
-
-export const makeModifiers = (id: number, modifiers: string, pattern: string, error: string = null) => {
-  const errorMeta = getErrorMeta(id, error);
-  return `
-  <div className="regex-pair__modifiers{errorMeta.errorClass}">
-    <label for="regex-pair--{id}__modifiers">Modifiers</label>
-    <input type="text" className="regex-pair__input regex-pair__input--modifiers{errorMeta.errorClass}" name="regex-pair--{id}__modifiers" id="regex-pair--{id}__modifiers" value="{modifiers}" pattern="{pattern}" />
-    {makeErrorMeassage(errorMeta.describedByID, error)}
-  </div>`
+export const Modifiers = ({ labelID, modifiers, pattern, error }) => {
+  const ID = 'regex-pair--' + labelID + '__modifiers';
+  const PATTERN = '^' + pattern + '$';
+  const errorMeta = getErrorMeta(labelID, error);
+  return (
+    <div className="regex-pair__modifiers{errorMeta.errorClass}">
+      <label for={ID}>Modifiers</label>
+      <TextInputField
+        labelID={ID}
+        fieldName="regex-pair__delimiter"
+        value={modifiers}
+        pattern={PATTERN}
+        describedByID={errorMeta.describedByID}
+        disabled={false}
+        keyUpFunc={false} // this needs to be a redux action generator function.
+        />
+      <ErrorMessage describedByID={errorMeta.describedByID} error={error} />
+    </div>
+  )
 }

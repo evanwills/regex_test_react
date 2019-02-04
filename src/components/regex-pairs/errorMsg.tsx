@@ -1,26 +1,29 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
-export const makeErrorMessage = (id: number, error: string) => {
+export const ErrorMessage = ({describedByID, error}) => {
   if (error !== null) {
-    return `<span id="{id}" className="regex-pair__error-msg">{error}</span>`;
-  } else {
-    return ``;
+    return (
+      <span id="{id}" className="regex-pair__error-msg">
+        {error}
+      </span>
+    );
   }
 };
 
-export const getErrorMeta = (id: number, error: string = null) => {
+export const getErrorMeta = (labelID: string, error: string = null) => {
   let output = {
     errorClass: '',
     describedBy: '',
-    describedByID: ''
+    describedByID: '',
+    hasError: false
   };
 
   if (error !== null) {
-    let describedByID = 'regex-pair--' + id + '__delimiter--error';
+    let describedByID = labelID + '--error';
     output.errorClass = ' has-error';
     output.describedByID = describedByID;
-    output.describedBy = 'described-by="' + describedByID + '"';
+    output.describedBy = ' aria-described-by="' + describedByID + '"';
+    output.hasError = true;
   }
   return output;
 };

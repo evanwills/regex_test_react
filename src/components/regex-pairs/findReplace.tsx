@@ -1,27 +1,34 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { TextInputField, TextAreaField } from '../generic/text-field';
+import { ErrorMessage, getErrorMeta } from './errorMsg'
 
-import { makeErrorMessage, getErrorMeta } from './makeErrorMsg'
-
-
-export const makeRegexInput = (id: number, value: string, findReplace: string = 'find', describedBy: string = '') => {
-  return `<input type="text" className="regex-pair__input regex-pair__input--{findReplace}{errorMeta.errorClass}" name="regex-pair--{id}__{findReplace}" id="regex-pair--{id}__{findReplace}" value="{value}"{describedBy} />`
-};
-
-export const makeRegexTextarea = (id: number, value: string, findReplace: string = 'find', describedBy: string = '') => {
-  return `<textarea className="regex-pair__input regex-pair__input--{findReplace}{errorMeta.errorClass}" name="regex-pair--{id}__{findReplace}" id="regex-pair--{id}__{findReplace}"{describedBy}>{value}</textarea>`
-};
-
-export const makeFindReplace = (id, value, findReplace, field, error: string = null) => {
+export const FindReplaceField = ({pairID, value, findReplace, isInput, error}) => {
   let labelStr = 'Replace';
   if (findReplace === 'find') {
     labelStr = 'Regex';
+  } else {
+    findReplace = 'replace'
   }
-  const errorMeta = getErrorMeta(id, error);
-  return `
-  <div className="regex-pair__{findReplace}{errorMeta.errorClass}">
-    <label for="regex-pair--id__{findReplace}">{labelStr}</label>
-    {field(id, value, findReplace, errorMeta.describedBy)}
-    {makeErrorMeassage(errorMeta.describedByID, error)}
-  </div>`
+  if (isInput !== false) {
+    isInput = true;
+  }
+  const ID = 'regex-pair--' + pairID +'__' + findReplace;
+  const errorMeta = getErrorMeta(pairID, error);
+
+  const inputProps = {
+    labelID: ID,
+    fieldName: 'regex-pair__' + findReplace,
+    value: value,
+    pattern: '',
+    describedByID: errorMeta.describedByID,
+    disabled: false,
+    keyUpFunc: false // this needs to be a redux action generator function.
+  }
+  return (
+    <div className="regex-pair__{findReplace}{errorMeta.errorClass}">
+      <label for="regex-pair--id__{findReplace}">{labelStr}</label>
+      {(isInput) ? <TextInputField {...inputProps} /> : <TextAreaField {...inputProps} />}
+      <ErrorMessage describedByID={errorMeta.describedByID} error={error} />
+    </div>
+  );
 };
