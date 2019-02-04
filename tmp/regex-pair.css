@@ -1,8 +1,49 @@
+/*
+ * ----------------------------------------------
+ * START: element styles
+ */
+
 body {
   box-sizing: border-box;
   line-height: 1.5rem;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+fieldset {
+  border: none;
+}
+
+legend {
+  position: relative;
+  /* top: 1rem; */
+  left: -1rem;
+  right: -1rem;
+  border-top: 0.1rem solid #eee;
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  padding: 0.5rem 1rem 0 1rem;
+}
+
+input, textarea {
+  border: 0.05rem solid #ddd;
+  box-sizing: border-box;
+  display: inline-block;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9375rem;
+  padding: 0.3rem 0.5rem;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  display: inline !important;
+  width: auto !important;
+}
+
+/*
+ *  END:  element styles
+ * ----------------------------------------------
+ * START: global class styles
+ */
 
 .sr-only {
   display: inline-block;
@@ -11,6 +52,47 @@ body {
   overflow: hidden;
   margin-left: -1px;
 }
+.list-unstyled {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+.list-inline {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 -1.5rem;
+}
+.list-inline li {
+  display: inline;
+  padding: 0.3rem 1.5rem 0;
+}
+
+.input--1 {
+  width: 2rem;
+}
+.input--4 {
+  width: 8rem;
+}
+.input--100 {
+  width: 100%;
+}
+
+
+.label--checkbox {
+  display: block;
+  box-sizing: border-box;
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  text-indent: -1.5rem;
+}
+
+.disabled {
+  color: #ccc;
+}
+/*
+ *  END:  global class styles
+ * ----------------------------------------------
+ * START module: regex pair (general) styling
+ */
 
 .regex-pair {
   border-top: 0.1rem solid #eee;
@@ -25,6 +107,9 @@ body {
   box-sizing: content-box;
 }
 
+.regex-pair input, .regex-pair textarea {
+  width: 100%
+}
 .regex-pair__main label {
   /* height: 1px;
   width: 1px;
@@ -74,12 +159,6 @@ body {
 }
 
 .regex-pair__input {
-  width: 100%;
-  padding: 0.3rem 0.5rem;
-  display: block;
-  box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.9375rem;
   position: relative;
   right: -0.1rem;
 }
@@ -156,10 +235,6 @@ body {
   column-count: 1;
 } */
 
-.regex-pair__extra__inputs > * {
-  padding: 0.1rem 0;
-  display: block;
-}
 .regex-pair__extra__inputs > div {
   padding-left: 0.15rem;
 }
@@ -206,13 +281,6 @@ body {
   border: none;
 
 }
-.regex-pair__label--checkbox {
-  line-height: 1.1rem;
-  padding-left: 1.5rem;
-  padding-top: 0.3rem;
-  text-indent: -1.625rem;
-  /* overflow-y: auto */
-}
 
 
 .chrome .regex-pair--multi-line .regex-pair__modifiers {
@@ -222,9 +290,9 @@ body {
 
 
 /*
- *  END:  PAIR: general styling
+ *  END module:  regex pair (general) styling
  * ----------------------------------------------
- * START: PAIR: grid styling
+ * START module: regex pair (responsive) styling
  */
 
 @media screen and (min-width: 25rem) {
@@ -348,6 +416,12 @@ body {
     grid-row-start: 2;
     position: relative;
     right: 0.01rem;
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+  }
+  .regex-pair__modifiers--blured {
+    opacity: 0.25 !important;
+    transition: opacity 300ms ease-in-out;
   }
 
   .regex-pair--multi-line .regex-pair__replace {
@@ -365,6 +439,10 @@ body {
     grid-row-end: 3;
     left: -0.5rem;
     transform: translate(0.52rem, -0.54rem);
+  }
+  .regex-pair--multi-line .regex-pair__modifiers {
+    position: relative;
+    bottom: 0.25rem;
   }
 
   .regex-pair__extra__inputs {
@@ -384,6 +462,12 @@ body {
  *  END:  PAIR: grid styling
  * ----------------------------------------------
  * START: MATCH: general styling
+ */
+
+/*
+ *  END module:  regex pair (responsive) styling
+ * ----------------------------------------------
+ * START module: match styling
  */
 
 pre {
@@ -506,9 +590,9 @@ pre {
 }
 
 /*
- *  END:  MATCH: general styling
+ *  END module:  match styling
  * ----------------------------------------------
- * START: MATCH: grid styling
+ * START module: match (responsive) styling
  */
 
 @media screen and (min-width: 30rem) {
@@ -548,8 +632,40 @@ pre {
   }
 }
 
+@media screen and (min-width: 62rem) {
+  .regex-match-all {
+    align-items: start;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2rem;
+    grid-row-gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .regex-match-all {
+    align-items: start;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 2rem;
+    grid-row-gap: 1rem;
+  }
+}
+
 /*
- *  END:  MATCH: grid styling
+ *  END module:  match (responsive) styling
  * ----------------------------------------------
+ * START module: settings
+ */
+
+ .settings input[type="text"] {
+   display: inline-block;
+   width: 2rem;
+ }
+
+/*
+ *  END module:  settings
+ * ----------------------------------------------
+ * START module: settings (responsive) styling
  */
 

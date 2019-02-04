@@ -1,10 +1,14 @@
+/* jslint browser: true */
+/* global $ */
+/* jslint evil: true */
+
 var hasTextarea = {}
 var isLongLine = {}
 
-function resizeTextarea (main) {
+function resizeTextarea (main, id) {
   var lines = 3
   var maxHeight = 15
-  var regex = new RegExp('(?:\r\n|\n\r|\r|\n)', 'g')
+  var regex = new RegExp('(?:\\r\\n|\\n\\r|\\r|\\n)', 'g')
 
   $(main).find('textarea').each(function () {
     var tmp = $(this).val().match(regex)
@@ -45,16 +49,27 @@ function autoResizeLongLine () {
 }
 
 function autoResizeMultiLine () {
-  var main = $(this).parent().parent()
-  // console.log('inside autoResizeMultiLine()')
+  var id = $(this).data('id')
+  var main = '#regex-pair--' + id
+  console.group('autoResize')
+  console.log('$(this):', $(this))
+  console.log('inside autoResizeMultiLine()')
+  console.log('main:', main)
+  console.log('id:', id)
+  console.groupEnd('autoResize')
+
   $(main).find('textarea').each(function () {
-    resizeTextarea($(this))
+    resizeTextarea($(this), id)
   })
 }
 
-function getID(element) {
+function getID (element) {
   var id = $(element).attr('id')
-  return id.replace(/^.*?--([0-9])__.*$/, '$1');
+  if (typeof id !== 'undefined') {
+    return id.replace(/^.*?--([0-9])__.*$/, '$1')
+  } else {
+    return id
+  }
 }
 
 function longLine () {
@@ -64,18 +79,20 @@ function longLine () {
   var prefix = 'regex-pair--'
   var ID = '#' + prefix + id
 
-  isMulti = hasTextarea[ID];
+  isMulti = hasTextarea[ID]
 
-  isLongLine[ID] = doLongLine;
+  isLongLine[ID] = doLongLine
   if (doLongLine === true) {
     $(ID).addClass(prefix + 'long-line').removeClass(prefix + 'multi-line')
     $(ID).off('keyup').on('keyup', autoResizeLongLine)
+    return true
   } else {
     $(ID).removeClass(prefix + 'long-line')
     $(ID).off('keyup').on('keyup', autoResizeMultiLine)
     if (isMulti) {
       $(ID).addClass(prefix + 'multi-line')
     }
+    return false
   }
 }
 
@@ -116,6 +133,14 @@ $(document).ready(function () {
   'use strict'
   var extraOpen = {}
 
+  $('input, textarea, select').each(function () {
+    var id = getID($(this))
+    // console.log('id:', id)
+    if (typeof id !== 'undefined') {
+      $(this).data('id', id)
+    }
+  })
+
   $('.regex-pair__open-close').on('click', function () {
     var ID = getID($(this))
     var extraID = '#regex-pair--' + ID + '__extra'
@@ -143,16 +168,16 @@ $(document).ready(function () {
     isLongLine[id] = $(this).hasClass('regex-pair--long-line')
   })
   $('textarea').each(function () {
-    var id = 'regex-pair--' + getID($(this));
+    var id = 'regex-pair--' + getID($(this))
     hasTextarea[id] = true
   })
   $('.regex-pair__open-close--open').trigger('click')
   $('.regex-pair--multi-line .regex-pair__input--find').on('focus', function (e) {
-    $(this).parent().parent().find('.regex-pair__modifiers').addClass('regex-pair__modifiers--blured')
+    $('#regex-pair--' + $(this).data('id')).find('.regex-pair__modifiers').addClass('regex-pair__modifiers--blured')
   })
 
   $('.regex-pair--multi-line .regex-pair__input--find').on('blur', function (e) {
-    $(this).parent().parent().find('.regex-pair__modifiers').removeClass('regex-pair__modifiers--blured')
+    $('#regex-pair--' + $(this).data('id')).find('.regex-pair__modifiers').removeClass('regex-pair__modifiers--blured')
   })
   $('.regex-pair__input--modifiers').on('blur', modifiersMultiLine)
 
@@ -164,5 +189,4 @@ $(document).ready(function () {
   // $('.regex-pair--long-line textarea').trigger('keyup')
   $('input.regex-pair__longLine').trigger('change')
   $('.regex-pair__main textarea').trigger('keyup')
-  $('.regex-pair__input--modifiers').trigger('blur')
 })
