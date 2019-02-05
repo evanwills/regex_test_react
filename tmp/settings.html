@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf8" />
+		<title>Regular Expression settings</title>
+		<link rel="stylesheet" href="regex-pair.css" />
+	</head>
+
+	<body>
+		<fieldset class="settings">
+			<h2>Settings</h2>
+			<fieldset id="sampleSettings">
+				<legend class="h3">Sample settings</legend>
+
+				<!-- <h3>Split sample</h3> -->
+				<ul class="list-unstyled">
+					<li>
+						<label class="label--checkbox">
+							<input type="checkbox" name="split_sample" id="split_sample" value="1" tabindex="22" />
+							Split the sample into pieces
+						</label>
+					</li>
+					<li class="disabled">
+						<label for="split_delim">
+							Character to split the sample with
+						</label>
+						<input type="text" name="split_delim" id="split_delim" value="\n" maxlength="2" size="1" tabindex="23" disabled="disabled" class="input--1" />
+					</li>
+				</ul>
+
+				<!-- <h3>Clean white space options</h3> -->
+				<ul class="list-unstyled">
+					<li>
+						<label class="label--checkbox">
+							<input type="checkbox" name="ws_trim" id="ws_trim" value="true" tabindex="19" />
+							Trim white space from sample
+						</label>
+					</li>
+					<li class="label--checkbox disabled">
+						<label class="disabled">
+							<input type="radio" name="ws_action" id="ws_trim_pos_before" value="1" tabindex="20" disabled="disabled" />
+							<span class="sr-only">Trim white space from sample</span> before processing
+						</label>
+						or
+					</li>
+					<li>
+						<label class="disabled" class="label--checkbox">
+							<input type="radio" name="ws_action" id="ws_trim_pos_after" value="0" checked="checked" tabindex="21" disabled="disabled" />
+							<span class="sr-only">Trim white space from sample</span> after processing
+						</label>
+					</li>
+				</ul>
+			</fieldset>
+
+			<fieldset id="pairSettings">
+				<legend class="h3">Regex Pair defaults</legend>
+
+				<!-- <h3>Split sample</h3> -->
+				<ul class="list-unstyled">
+					<li>
+						<label class="label--checkbox">
+							<input type="checkbox" name="settings__transformWhitespaceCharacters" id="settings__transformWhitespaceCharacters" value="1" checked="checked" />
+							Transform escaped whitespace characters in replace string
+						</label>
+					</li>
+					<li>
+						<label class="label--checkbox">
+							<input type="checkbox" name="settings__doReplaceOnTest" id="settings__doReplaceOnTest" value="1" checked="checked" />
+							Do replace on test
+						</label>
+					</li>
+					<li>
+						<label class="label--checkbox">
+							<input type="checkbox" class="settings__longLine" name="settings__longLine" id="settings__longLine" class="settings__longLine" value="1" />
+							Long line (single column)
+						</label>
+					</li>
+				</ul>
+			</fieldset>
+
+			<fieldset id="regexEngines">
+				<legend class="h3">Regular Expression settings</legend>
+
+				<fieldset id="regexEngines">
+					<legend class="h4">Choose your Regular expression engine</legend>
+					<ul id="regex-engines" class="list-inline">
+						<li>
+							<label>
+								<input type="radio" name="regex_engine" id="regexVanillaJS" value="Vanilla JS" class="engine-radio" checked="checked">
+								Vanilla JS
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" name="regex_engine" id="regexxRegExpJS" value="xRegExp JS" class="engine-radio">
+								xRegExp JS
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" name="regex_engine" id="regexPHPPCRE" value="PHP PCRE" class="engine-radio">
+								PHP PCRE
+							</label>
+						</li>
+					</ul>
+				</fieldset>
+
+				<fieldset id="regexEngines">
+					<legend class="h4">Regular Expression delimiters</legend>
+					<div id="regex-delimiter">
+						<p id="delim-describe">Some regex engines (like PHP) require delimiters to identify the start and end of the regex.</p>
+
+						<ul class="list-unstyled">
+							<li>
+								<label for="regex_delim">Delimiter:</label>
+								<input type="text" name="regex_delim" id="regex_delim" value="`" pattern="^[^0-9a-zA-Z\s\\]$" maxlength="1" size="1" class="input--1" aria-describedby="delim-describe" />
+
+								<p>
+									<strong>NOTE:</strong>
+									If the delimiter is a bracket/brace the delimiters will automatically be paired so the opening delimiter is the opening bracket/brace and the closing delimiter is it's closing equivalent.
+								</p>
+							</li>
+						</ul>
+					</div>
+				</fieldset>
+			</fieldset>
+
+			<fieldset id="renderMatchPatterns">
+				<legend class="h3">Rendering settings</legend>
+
+				<fieldset id="renderMatchPatterns">
+					<legend class="h4">Truncate long strings</legend>
+
+					<div id="truncate-long-strings">
+						<p>When viewing results, it's often convenient (and faster) to truncate the sample or matched strings.</p>
+
+						<ul class="list-unstyled">
+							<li>
+								<label for="sample_len">Maximum length of sample in results:</label>
+								<input type="number" name="sample_len" id="sample_len" value="300" min="6" step="1" pattern="^[0-9]+$" size="4" class="input--4" />
+							</li>
+							<li>
+								<label for="matched_len">Maximum length of a matched part in results:</label>
+								<input type="number" name="matched_len" id="matched_len" value="300" min="6" step="1" pattern="^[0-9]+$" size="1" class="input--4" />
+							</li>
+						</ul>
+					</div>
+				</fieldset>
+
+				<fieldset id="renderWhiteSpace">
+					<legend class="h4">White space characters</legend>
+
+					<div id="rendering-white-space-chars">
+						<p>When rendering samples and matches</p>
+
+						<ul class="list-unstyled">
+							<li>
+								<label for="render_ws_hide" class="label--checkbox">
+									<input type="radio" name="render_ws" id="render_ws_hide" value="0" checked="checked">
+									Do not show white space characters:
+								</label>
+							</li>
+							<li>
+								<label for="render_ws_show" class="label--checkbox">
+									<input type="radio" name="render_ws" id="render_ws_show" value="1">
+									Show white space characters in samples and matches:
+								</label>
+							</li>
+						</ul>
+					</div>
+				</fieldset>
+			</fieldset>
+		</fieldset>
+	</body>
+</html>
