@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextInputField, TextAreaField } from '../generic/text-field';
-import { ErrorMessage, getErrorMeta } from './errorMsg'
+import { ErrorMessage, getErrorMeta } from '../generic/errorMsg'
 
 // inferface FindReplaceFieldProps {
 //   pairID: string,
@@ -42,7 +42,7 @@ export const FindReplaceField = ({pairID, value, findReplace, isInput, error}) =
     <div className={wrapperClass}>
       <label for={ID}>{labelStr}</label>
       {(isInput) ? <TextInputField {...inputProps} /> : <TextAreaField {...inputProps} />}
-      <ErrorMessage describedByID={errorMeta.describedByID} error={error} classPrefix="regex-pair" />
+      <ErrorMessage describedByID={errorMeta.describedByID} errorMsg={error} classPrefix="regex-pair" />
     </div>
   );
 };

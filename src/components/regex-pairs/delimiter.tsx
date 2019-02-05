@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorMessage, getErrorMeta} from './errorMsg';
+import { ErrorMessage, getErrorMeta} from '../generic/errorMsg';
 import { TextInputField } from '../generic/text-field';
 
 
@@ -9,6 +9,7 @@ export const Delimiter = ({pairID, delimiter, pattern, error}) => {
   const fieldClassName = 'regex-pair__delimiter';
   const errorMeta = getErrorMeta(ID, error);
   const PATTERN = '^' + pattern + '$';
+
   return (
         <div className={fieldClassName + errorMeta.errorClass}>
           <label for={ID}>Delimiter</label>
@@ -21,9 +22,7 @@ export const Delimiter = ({pairID, delimiter, pattern, error}) => {
             disabled={false}
             onKeyUpFunc={false} // this needs to be a redux action generator function.
             />
-          <ErrorMessage error={error} describedByID={errorMeta.describedByID} classPrefix="regex-pair" />
+          <ErrorMessage errorMsg={error} describedByID={errorMeta.describedByID} classPrefix="regex-pair" />
         </div>
   );
 }
-
-// <ErrorMessage describedByID={ID} errorMsg={error} />

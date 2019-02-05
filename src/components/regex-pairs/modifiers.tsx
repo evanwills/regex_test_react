@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextInputField } from '../generic/text-field';
-import { ErrorMessage, getErrorMeta } from './errorMsg'
+import { ErrorMessage, getErrorMeta } from '../generic/errorMsg'
 
 
 export const Modifiers = ({ labelID, modifiers, pattern, error }) => {
@@ -22,7 +22,7 @@ export const Modifiers = ({ labelID, modifiers, pattern, error }) => {
         disabled={false}
         onKeyUpFunc={false} // this needs to be a redux action generator function.
         />
-      <ErrorMessage error={error} describedByID={errorMeta.describedByID} classPrefix="regex-pair" />
+      <ErrorMessage errorMsg={error} describedByID={errorMeta.describedByID} classPrefix="regex-pair" />
     </div>
   )
 }
