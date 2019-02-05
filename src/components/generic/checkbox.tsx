@@ -1,11 +1,17 @@
 import React from 'react'
 
-export const Checkbox = ({ labelID, value, labelText, isChecked, onChangeFunc }) => {
-  const ID = `regex-pair--{id}__{suffix}`;
+const Checkbox = ({ labelID, value, labelText, isChecked, onChangeFunc }) => {
   return (
     <label className="label--checkbox">
-      <input type="checkbox" name={labelID} value={value} checked={isChecked} onchange={onChangeFunc} />
+      <input
+        type="checkbox"
+        name={labelID}
+        value={value}
+        checked={isChecked}
+        onChange={onChangeFunc} />
       {labelText}
     </label>
   );
 }
+
+export default Checkbox;

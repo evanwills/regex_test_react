@@ -1,14 +1,16 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import AccessibleButton from '../generic/button'
 
-export const DeleteRegex = (id: number, count: number) => {
+export const DeleteRegex = ({labelID, count, onClickFunc}) => {
   if (count > 1) {
-    const ID = `regex-pair--{id}__delete`;
+    const ID = 'regex-pair--' + labelID + '__delete';
     return (
       <div className="regex-pair__extra__actions">
-        <button className="regex-pair__delete" name={ID} id={ID}>
-          Delete this regex
-        </button>
+        <AccessibleButton
+          btnText="Delete this regex"
+          labelID={ID}
+          fieldClass="regex-pair__delete"
+          onClickFunc={onClickFunc} />
       </div>
     )
   }

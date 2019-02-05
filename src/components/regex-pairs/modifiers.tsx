@@ -5,21 +5,24 @@ import { ErrorMessage, getErrorMeta } from './errorMsg'
 
 export const Modifiers = ({ labelID, modifiers, pattern, error }) => {
   const ID = 'regex-pair--' + labelID + '__modifiers';
+  const fieldClass = 'regex-pair__modifiers';
   const PATTERN = '^' + pattern + '$';
   const errorMeta = getErrorMeta(labelID, error);
+  const wrapperClass = fieldClass + errorMeta.errorClass;
+
   return (
-    <div className="regex-pair__modifiers{errorMeta.errorClass}">
+    <div className={wrapperClass}>
       <label for={ID}>Modifiers</label>
       <TextInputField
         labelID={ID}
-        fieldName="regex-pair__delimiter"
+        fieldClass={fieldClass + '__input'}
         value={modifiers}
         pattern={PATTERN}
         describedByID={errorMeta.describedByID}
         disabled={false}
-        keyUpFunc={false} // this needs to be a redux action generator function.
+        onKeyUpFunc={false} // this needs to be a redux action generator function.
         />
-      <ErrorMessage describedByID={errorMeta.describedByID} error={error} />
+      <ErrorMessage error={error} describedByID={errorMeta.describedByID} classPrefix="regex-pair" />
     </div>
   )
 }

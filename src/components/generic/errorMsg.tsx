@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const ErrorMessage = ({describedByID, error}) => {
+export const ErrorMessage = ({error, describedByID, classPrefix}) => {
   if (error !== null) {
     return (
-      <span id="{id}" className="regex-pair__error-msg">
+      <span id={describedByID} className={classPrefix + '__error-msg'}>
         {error}
       </span>
     );
@@ -27,3 +27,4 @@ export const getErrorMeta = (labelID: string, error: string = null) => {
   }
   return output;
 };
+  

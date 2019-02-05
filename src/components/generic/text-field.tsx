@@ -1,42 +1,44 @@
 import React from 'react'
 
-export const TextInputField = ({ labelID, fieldName, value, pattern, describedByID, keyUpFunc, disabled }) => {
-  let attrs = {};
+const getDynamicAttrs = (pattern: string, describedByID: string, disabled: boolean) => {
+  let output = {};
 
-  if (typeof describedByID !== 'undefined' && describedByID !== '') {
-    attrs['aria-described-by'] = describedByID;
+  if (describedByID !== '') {
+    output['aria-described-by'] = describedByID;
   }
-  if (typeof pattern !== 'undefined' && pattern !== '') {
-    attrs['pattern'] = pattern;
+  if (pattern !== '') {
+    output['pattern'] = pattern;
   }
-  if (typeof disabled !== 'undefined' && disabled !== '') {
-    attrs['disabled'] = disabled;
+  if (disabled === true) {
+    output['disabled'] = disabled;
   }
+}
+
+export const TextInputField = ({ labelID, fieldClass, value, pattern, describedByID, onKeyUpFunc, disabled }) => {
+  const attrs = getDynamicAttrs(pattern, describedByID, disabled);
 
   return (
-      <input type="text" className={fieldName}
+      <input
+        type="text"
+        className={fieldClass}
+        id={labelID}
         name={labelID}
         value={value}
         {...attrs}
-        onkeyup={keyUpFunc} />
+        onkeyup={onKeyUpFunc} />
     );
 }
 
-export const TextAreaField = ({ labelID, fieldName, value, pattern, describedByID, keyUpFunc, disabled }) => {
-  let attrs = {};
-
-  if (typeof describedByID !== 'undefined' && describedByID !== '') {
-    attrs['aria-described-by'] = describedByID;
-  }
-  if (typeof pattern !== 'undefined' && pattern !== '') {
-    attrs['pattern'] = pattern;
-  }
-  if (typeof disabled !== 'undefined' && disabled !== '') {
-    attrs['disabled'] = disabled;
-  }
+export const TextAreaField = ({ labelID, fieldClass, value, pattern, describedByID, onKeyUpFunc, disabled }) => {
+  const attrs = getDynamicAttrs(pattern, describedByID, disabled);
 
   return (
-      <textarea className={fieldName} name={labelID} {...attrs} onkeyup={keyUpFunc}>
+      <textarea
+        className={fieldClass}
+        id={labelID}
+        name={labelID}
+        {...attrs}
+        onkeyup={onKeyUpFunc}>
         {value}
       </textarea>
     );

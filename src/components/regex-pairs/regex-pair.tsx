@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
 import { Delimiter } from './delimiter';
 import { Modifiers } from './modifiers';
@@ -33,11 +32,11 @@ const RegexPair = (props, key) => {
       </main>
       <footer className={extraOpen}>
         <div className="regex-pair__extra__inputs">
-          {makeDelimiter(props.id, props.delimiter.value, props.pattern, props.delimiter.error)}
-          <Checkbox labelID={key} value="1" 'transformWhitespaceCharacters', 'true', 'Transform escaped whitespace characters in replace string', props.transformEscapedWhiteSpace) />
-          <Checkbox labelID={key} value="1" 'doReplaceOnTest', 'true', 'Do replace on test', props.doReplaceOnTest) />
+          <Delimiter pairID={key} delimiter={props.delimiter.value} pattern={props.delimiter.pattern} error={props.delimiter.error} />
+          <Checkbox labelID={'regex-pair--' + key + '__transformWhitespaceCharacters'} value="1" labelText="Transform escaped whitespace characters in replace string" isChecked={props.transformEscapedWhiteSpace} onChangeFunc={false} />
+          <Checkbox labelID={'regex-pair--' + key + '__doReplaceOnTest'} value="1" labelText="Do replace on test" isChecked={props.doReplaceOnTest} onChangeFunc={false} />
         </div>
-        {makeDeleteRegex(props.id, props.regexCount)}
+        <DeleteRegex labelID={key} count={props.regexCount} />
         <OpenClose labelID={key} isOpen={false} />
       </footer>
     </article>
