@@ -1,6 +1,7 @@
 import React from 'react'
 import { TextInputField, TextAreaField } from '../generic/text-field';
 import { ErrorMessage, getErrorMeta } from '../generic/errorMsg'
+import { FindReplaceFieldProps } from './pair.typeDefs'
 
 // inferface FindReplaceFieldProps {
 //   pairID: string,
@@ -10,21 +11,21 @@ import { ErrorMessage, getErrorMeta } from '../generic/errorMsg'
 //   error: string
 // }
 
-export const FindReplaceField = ({pairID, value, findReplace, isInput, error}) => {
-  let labelStr = 'Replace';
+export const FindReplaceField = (props: FindReplaceFieldProps) => {
+  const {pairID, value, findReplace, isInput, error} = props
 
-  if (findReplace === 'find') {
+  let labelStr = 'Replace';
+  let _findReplace = findReplace;
+
+  if (_findReplace === 'find') {
     labelStr = 'Regex';
   } else {
-    findReplace = 'replace'
-  }
-  if (isInput !== false) {
-    isInput = true;
+    _findReplace = 'replace'
   }
 
-  const fieldClass = 'regex-pair__' + findReplace;
-  const ID = 'regex-pair--' + pairID +'__' + findReplace;
-  const errorMeta = getErrorMeta(pairID, error);
+  const fieldClass = 'regex-pair__' + _findReplace;
+  const ID = 'regex-pair--' + pairID +'__' + _findReplace;
+  const errorMeta = getErrorMeta(ID, error);
 
   const inputProps = {
     labelID: ID,
@@ -32,7 +33,7 @@ export const FindReplaceField = ({pairID, value, findReplace, isInput, error}) =
     value: value,
     pattern: '',
     describedByID: errorMeta.describedByID,
-    onKeyUpFunc: false, // this needs to be a redux action generator function.
+    onKeyUpFunc: function () {}, // this needs to be a redux action generator function.
     disabled: false
   }
 
@@ -40,9 +41,11 @@ export const FindReplaceField = ({pairID, value, findReplace, isInput, error}) =
 
   return (
     <div className={wrapperClass}>
-      <label for={ID}>{labelStr}</label>
+      <label htmlFor={ID}>{labelStr}</label>
       {(isInput) ? <TextInputField {...inputProps} /> : <TextAreaField {...inputProps} />}
       <ErrorMessage describedByID={errorMeta.describedByID} errorMsg={error} classPrefix="regex-pair" />
     </div>
   );
 };
+
+export default FindReplaceField

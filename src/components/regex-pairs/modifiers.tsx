@@ -12,7 +12,7 @@ export const Modifiers = ({ labelID, modifiers, pattern, error }) => {
 
   return (
     <div className={wrapperClass}>
-      <label for={ID}>Modifiers</label>
+      <label htmlFor={ID}>Modifiers</label>
       <TextInputField
         labelID={ID}
         fieldClass={fieldClass + '__input'}
@@ -26,3 +26,5 @@ export const Modifiers = ({ labelID, modifiers, pattern, error }) => {
     </div>
   )
 }
+
+export default Modifiers

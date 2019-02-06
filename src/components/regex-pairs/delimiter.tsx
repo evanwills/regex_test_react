@@ -12,7 +12,7 @@ export const Delimiter = ({pairID, delimiter, pattern, error}) => {
 
   return (
         <div className={fieldClassName + errorMeta.errorClass}>
-          <label for={ID}>Delimiter</label>
+          <label htmlFor={ID}>Delimiter</label>
           <TextInputField
             labelID={ID}
             fieldClass={fieldClassName}
@@ -26,3 +26,5 @@ export const Delimiter = ({pairID, delimiter, pattern, error}) => {
         </div>
   );
 }
+
+export default Delimiter
