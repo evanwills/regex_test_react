@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+tmp/playground.js
+tmp/regex-pair__DL.css
+tmp/tmp.html
