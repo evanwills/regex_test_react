@@ -41,7 +41,7 @@ expanded layout
 		<article id="regex-pair--1" class="regex-pair">
 			<main class="regex-pair__main">
 				<div class="regex-pair__find">
-					<label for="regex-pair--1__replace">Regex</label>
+					<label for="regex-pair--1__replace">Regex (single, short line)</label>
 					<input type="text" class="regex-pair__input regex-pair__input--find" name="regex-pair--1__find" id="regex-pair--1__find" aria-describedby="regex-pair--1__error" value="" />
 					<span class="regex-pair__error" id="regex-pair__error"></span>
 				</div>
@@ -57,22 +57,30 @@ expanded layout
 			</main>
 			<footer class="regex-pair__extra regex-pair__extra--open" id="regex-pair--1__extra">
 				<div class="regex-pair__extra__inputs">
-					<div class="regex-pair__delimiter">
-						<label for="regex-pair--1__delimiter">Delimiter</label>
-						<input type="text" class="regex-pair__delimiter" name="regex-pair--1__delimiter" id="regex-pair--1__delimiter" value="" />
+					<div class="regex-pair__settings regex-pair__settings--left">
+						<div class="regex-pair__delimiter label--left">
+							<label for="regex-pair--1__delimiter">Delimiter</label>
+							<input type="text" class="regex-pair__delimiter" name="regex-pair--1__delimiter" id="regex-pair--1__delimiter" value="" />
+						</div>
+						<label class="label--checkbox label--left regex-pair__transformWhitespaceCharacters">
+							<input type="checkbox" name="regex-pair--1__transformWhitespaceCharacters" id="regex-pair--1__transformWhitespaceCharacters" value="1" checked="checked"  checked="true" />
+							Transform escaped whitespace characters in replace string
+						</label>
 					</div>
-					<label class="label--checkbox regex-pair__transformWhitespaceCharacters">
-						<input type="checkbox" name="regex-pair--1__transformWhitespaceCharacters" id="regex-pair--1__transformWhitespaceCharacters" value="1" checked="checked"  checked="true" />
-						Transform escaped whitespace characters in replace string
-					</label>
-					<label class="label--checkbox regex-pair__doReplaceOnTest">
-						<input type="checkbox" name="regex-pair--1__doReplaceOnTest" id="regex-pair--1__doReplaceOnTest" value="1" checked="checked" />
-						Do replace on test
-					</label>
-					<label class="label--checkbox regex-pair__longLine">
-						<input type="checkbox" class="regex-pair__longLine" name="regex-pair--1__longLine" id="regex-pair--1__longLine" class="regex-pair__longLine" value="1" data-id="1" />
-						Long line (single column)
-					</label>
+					<div class="regex-pair__settings regex-pair__settings--right">
+						<label class="label--checkbox label--right regex-pair__doReplaceOnTest">
+							<input type="checkbox" name="regex-pair--1__doReplaceOnTest" id="regex-pair--1__doReplaceOnTest" value="1" checked="checked" />
+							Do replace on test
+						</label>
+						<label class="label--checkbox regex-pair__longLine">
+							<input type="checkbox" class="regex-pair__longLine" name="regex-pair--1__longLine" id="regex-pair--1__longLine" class="regex-pair__longLine" value="1" data-id="1" />
+							Long line (single column)
+						</label>
+						<label class="label--checkbox regex-pair__multiLine">
+							<input type="checkbox" class="regex-pair__multiLine" name="regex-pair--1__multiLine" id="regex-pair--1__multiLine" class="regex-pair__multiLine" value="1" data-id="1" />
+							Multiple line input (text area)
+						</label>
+					</div>
 				</div>
 				<div class="regex-pair__extra__actions">
 					<button class="regex-pair__delete" name="regex-pair--1__delete" id="regex-pair--1__delete">Delete this regex</button>
@@ -86,7 +94,7 @@ expanded layout
 		<article id="regex-pair--2" class="regex-pair regex-pair--long-line">
 			<main class="regex-pair__main">
 				<div class="regex-pair__find">
-					<label for="regex-pair--2__find">Regex</label>
+					<label for="regex-pair--2__find">Regex (single, long line)</label>
 					<input type="text" class="regex-pair__input regex-pair__input--find" name="regex-pair--2__find" id="regex-pair--2__find" value="" />
 				</div>
 				<div class="regex-pair__modifiers">
@@ -101,22 +109,30 @@ expanded layout
 			</main>
 			<footer class="regex-pair__extra regex-pair__extra--open" id="regex-pair--2__extra">
 				<div class="regex-pair__extra__inputs">
-					<div class="regex-pair__delimiter">
-						<label for="regex-pair--2__delimiter">Delimiter</label>
-						<input type="text" class="regex-pair__delimiter" name="regex-pair--2__delimiter" id="regex-pair--2__delimiter" value="" />
+					<div class="regex-pair__settings regex-pair__settings--left">
+						<div class="regex-pair__delimiter">
+							<label for="regex-pair--2__delimiter">Delimiter</label>
+							<input type="text" class="regex-pair__delimiter" name="regex-pair--2__delimiter" id="regex-pair--2__delimiter" value="" />
+						</div>
+						<label class="label--checkbox regex-pair__transformWhitespaceCharacters">
+							<input type="checkbox" name="regex-pair--2__transformWhitespaceCharacters" id="regex-pair--2__transformWhitespaceCharacters" value="1" checked="checked"  checked="true" />
+							Transform escaped whitespace characters in replace string
+						</label>
 					</div>
-					<label class="label--checkbox regex-pair__transformWhitespaceCharacters">
-						<input type="checkbox" name="regex-pair--2__transformWhitespaceCharacters" id="regex-pair--2__transformWhitespaceCharacters" value="1" checked="checked"  checked="true" />
-						Transform escaped whitespace characters in replace string
-					</label>
-					<label class="label--checkbox regex-pair__doReplaceOnTest">
-						<input type="checkbox" name="regex-pair--2__doReplaceOnTest" id="regex-pair--2__doReplaceOnTest" value="1" checked="checked" />
-						Do replace on test
-					</label>
-					<label class="label--checkbox regex-pair__longLine">
-						<input type="checkbox" class="regex-pair__longLine" name="regex-pair--2__longLine" id="regex-pair--2__longLine" class="regex-pair__longLine" value="1" checked="checked" data-id="2" />
-						Long line (single column)
-					</label>
+					<div class="regex-pair__settings regex-pair__settings--right">
+						<label class="label--checkbox regex-pair__doReplaceOnTest">
+							<input type="checkbox" name="regex-pair--2__doReplaceOnTest" id="regex-pair--2__doReplaceOnTest" value="1" checked="checked" />
+							Do replace on test
+						</label>
+						<label class="label--checkbox regex-pair__longLine">
+							<input type="checkbox" class="regex-pair__longLine" name="regex-pair--2__longLine" id="regex-pair--2__longLine" class="regex-pair__longLine" value="1" checked="checked" data-id="2" />
+							Long line (single column)
+						</label>
+						<label class="label--checkbox regex-pair__multiLine">
+							<input type="checkbox" class="regex-pair__multiLine" name="regex-pair--2__multiLine" id="regex-pair--2__multiLine" class="regex-pair__multiLine" value="1" data-id="2" />
+							Multiple line input (text area)
+						</label>
+					</div>
 				</div>
 				<div class="regex-pair__extra__actions">
 					<button class="regex-pair__delete" name="regex-pair--2__delete" id="regex-pair--2__delete">Delete this regex</button>
@@ -130,7 +146,7 @@ expanded layout
 		<article id="regex-pair--3" class="regex-pair regex-pair--multi-line">
 			<main class="regex-pair__main">
 				<div class="regex-pair__find">
-					<label for="regex-pair--3__find">Regex</label>
+					<label for="regex-pair--3__find">Regex (multiple, short lines)</label>
 					<textarea class="regex-pair__input regex-pair__input--find" name="regex-pair--3__find" id="regex-pair--3__find" data-id="3">this is a line
 in a regular expression
 with many more than three lines.
@@ -151,22 +167,30 @@ really work as it is intended</textarea>
 			</main>
 			<footer class="regex-pair__extra regex-pair__extra--open" id="regex-pair--3__extra">
 				<div class="regex-pair__extra__inputs">
-					<div class="regex-pair__delimiter">
-						<label for="regex-pair--3__delimiter">Delimiter</label>
-						<input type="text" class="regex-pair__delimiter" name="regex-pair--3__delimiter" id="regex-pair--3__delimiter" value="" />
+					<div class="regex-pair__settings regex-pair__settings--left">
+						<div class="regex-pair__delimiter">
+							<label for="regex-pair--3__delimiter">Delimiter</label>
+							<input type="text" class="regex-pair__delimiter" name="regex-pair--3__delimiter" id="regex-pair--3__delimiter" value="" />
+						</div>
+						<label class="label--checkbox regex-pair__transformWhitespaceCharacters">
+							<input type="checkbox" name="regex-pair--3__transformWhitespaceCharacters" id="regex-pair--3__transformWhitespaceCharacters" value="1" checked="checked"  checked="true" />
+							Transform escaped whitespace characters in replace string
+						</label>
 					</div>
-					<label class="label--checkbox regex-pair__transformWhitespaceCharacters">
-						<input type="checkbox" name="regex-pair--3__transformWhitespaceCharacters" id="regex-pair--3__transformWhitespaceCharacters" value="1" checked="checked"  checked="true" />
-						Transform escaped whitespace characters in replace string
-					</label>
-					<label class="label--checkbox regex-pair__doReplaceOnTest">
-						<input type="checkbox" name="regex-pair--3__doReplaceOnTest" id="regex-pair--3__doReplaceOnTest" value="1" checked="checked" />
-						Do replace on test
-					</label>
-					<label class="label--checkbox regex-pair__longLine">
-						<input type="checkbox" class="regex-pair__longLine" name="regex-pair--3__longLine" id="regex-pair--3__longLine" class="regex-pair__longLine" value="1" data-id="3" />
-						Long line (single column)
-					</label>
+					<div class="regex-pair__settings regex-pair__settings--right">
+						<label class="label--checkbox regex-pair__doReplaceOnTest">
+							<input type="checkbox" name="regex-pair--3__doReplaceOnTest" id="regex-pair--3__doReplaceOnTest" value="1" checked="checked" />
+							Do replace on test
+						</label>
+						<label class="label--checkbox regex-pair__longLine">
+							<input type="checkbox" class="regex-pair__longLine" name="regex-pair--3__longLine" id="regex-pair--3__longLine" class="regex-pair__longLine" value="1" data-id="3" />
+							Long line (single column)
+						</label>
+						<label class="label--checkbox regex-pair__multiLine">
+							<input type="checkbox" class="regex-pair__multiLine" name="regex-pair--3__multiLine" id="regex-pair--3__multiLine" class="regex-pair__multiLine" value="1" data-id="3" checked="checked" />
+							Multiple line input (text area)
+						</label>
+					</div>
 				</div>
 				<div class="regex-pair__extra__actions">
 					<button class="regex-pair__delete" name="regex-pair--3__delete" id="regex-pair--3__delete">Delete this regex</button>
@@ -180,7 +204,7 @@ really work as it is intended</textarea>
 		<article id="regex-pair--4" class="regex-pair regex-pair--long-line">
 			<main class="regex-pair__main">
 				<div class="regex-pair__find">
-					<label for="regex-pair--4__find">Regex</label>
+					<label for="regex-pair--4__find">Regex (multiple long lines)</label>
 					<textarea class="regex-pair__input regex-pair__input--find" name="regex-pair--4__find" id="regex-pair--4__find">this is a line
 in a regular expression
 with many more than three lines.
@@ -202,22 +226,30 @@ really work as it is intended</textarea>
 			</main>
 			<footer class="regex-pair__extra regex-pair__extra--open" id="regex-pair--4__extra">
 				<div class="regex-pair__extra__inputs">
-					<div class="regex-pair__delimiter">
-						<label for="regex-pair--3__delimiter">Delimiter</label>
-						<input type="text" class="regex-pair__delimiter" name="regex-pair--4__delimiter" id="regex-pair--4__delimiter" value="" />
+					<div class="regex-pair__settings regex-pair__settings--left">
+						<div class="regex-pair__delimiter">
+							<label for="regex-pair--3__delimiter">Delimiter</label>
+							<input type="text" class="regex-pair__delimiter" name="regex-pair--4__delimiter" id="regex-pair--4__delimiter" value="" />
+						</div>
+						<label class="label--checkbox regex-pair__transformWhitespaceCharacters">
+							<input type="checkbox" name="regex-pair--4__transformWhitespaceCharacters" id="regex-pair--4__transformWhitespaceCharacters" value="1" checked="checked"  checked="true" />
+							Transform escaped whitespace characters in replace string
+						</label>
 					</div>
-					<label class="label--checkbox regex-pair__transformWhitespaceCharacters">
-						<input type="checkbox" name="regex-pair--4__transformWhitespaceCharacters" id="regex-pair--4__transformWhitespaceCharacters" value="1" checked="checked"  checked="true" />
-						Transform escaped whitespace characters in replace string
-					</label>
-					<label class="label--checkbox regex-pair__doReplaceOnTest">
-						<input type="checkbox" name="regex-pair--4__doReplaceOnTest" id="regex-pair--4__doReplaceOnTest" value="1" checked="checked" />
-						Do replace on test
-					</label>
-					<label class="label--checkbox regex-pair__longLine">
-						<input type="checkbox" class="regex-pair__longLine" name="regex-pair--4__longLine" id="regex-pair--4__longLine" value="1" checked="checked" data-id="4" />
-						Long line (single column)
-					</label>
+					<div class="regex-pair__settings regex-pair__settings--right">
+						<label class="label--checkbox regex-pair__doReplaceOnTest">
+							<input type="checkbox" name="regex-pair--4__doReplaceOnTest" id="regex-pair--4__doReplaceOnTest" value="1" checked="checked" />
+							Do replace on test
+						</label>
+						<label class="label--checkbox regex-pair__longLine">
+							<input type="checkbox" class="regex-pair__longLine" name="regex-pair--4__longLine" id="regex-pair--4__longLine" value="1" checked="checked" data-id="4" />
+							Long line (single column)
+						</label>
+						<label class="label--checkbox regex-pair__multiLine">
+							<input type="checkbox" class="regex-pair__multiLine" name="regex-pair--4__multiLine" id="regex-pair--4__multiLine" class="regex-pair__multiLine" value="1" data-id="4" checked="checked" />
+							Multiple line input (text area)
+						</label>
+					</div>
 				</div>
 				<div class="regex-pair__extra__actions">
 					<button class="regex-pair__delete" name="regex-pair--4__delete" id="regex-pair--4__delete">Delete this regex</button>

@@ -18,6 +18,15 @@ export interface AccessibleButtonProps {
   onClickFunc: CallableFunction
 }
 
+export interface TextBlockProps {
+  labelID: number,
+  value: string,
+  pattern: string,
+  describedByID: string,
+  onKeyUpFunc: CallableFunction,
+  disabled: boolean
+}
+
 export interface GenericTextFieldProps {
   labelID: string,
   fieldClass: string,

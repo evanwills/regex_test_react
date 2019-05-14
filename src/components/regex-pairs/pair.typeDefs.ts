@@ -1,16 +1,18 @@
 import { TextInput, ErrorObj } from '../generic/generic.typeDefs'
+import { ErrorMessage } from '../generic/errorMsg';
 
 export interface RegexPairProps {
-  find: TextInput,
-  replace: string,
-  delimiter: TextInput,
-  modifiers: TextInput,
+  find: WholeTextFieldProps,
+  replace: WholeTextFieldProps,
+  delimiter: WholeTextFieldProps,
+  modifiers: WholeTextFieldProps,
   multiLineCount: number,
   doReplaceOnTest: boolean,
+  idDeletable: boolean;
   isOpen: boolean,
   transformEscapedWhiteSpace: boolean,
   valid: boolean,
-  error: ErrorObj,
+  ErrorMessage: boolean,
   regexCount: number
 }
 
@@ -19,11 +21,24 @@ export interface FindReplaceFieldProps {
   value: string,
   findReplace: string,
   isInput: boolean,
-  error: string
+  error?: ErrorObj
 }
 
 export interface DeleteRegexProps {
-  labelID: string,
+  labelID: number,
   count: number,
   onClickFunc: CallableFunction
+}
+
+export interface ModifiersProps {
+  error?: ErrorObj,
+  labelID: number,
+  modifiers: string,
+  pattern: string
+}
+
+export interface WholeTextFieldProps {
+  value: string,
+  pattern: string
+  error?: ErrorObj
 }

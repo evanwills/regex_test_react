@@ -11,6 +11,10 @@ import { FindReplaceFieldProps } from './pair.typeDefs'
 //   error: string
 // }
 
+/**
+ * FindReplaceField() returns a single (accessible input field) for either a find or replace field in a regex pair
+ * @param props
+ */
 export const FindReplaceField = (props: FindReplaceFieldProps) => {
   const {pairID, value, findReplace, isInput, error} = props
 
@@ -25,7 +29,7 @@ export const FindReplaceField = (props: FindReplaceFieldProps) => {
 
   const fieldClass = 'regex-pair__' + _findReplace;
   const ID = 'regex-pair--' + pairID +'__' + _findReplace;
-  const errorMeta = getErrorMeta(ID, error);
+  const errorMeta = getErrorMeta(ID, error.errorMsg);
 
   const inputProps = {
     labelID: ID,

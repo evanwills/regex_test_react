@@ -28,6 +28,8 @@ const getDynamicAttrs = (pattern: string, describedByID: string, disabled: boole
   if (height !== null) {
     output['rows'] = height;
   }
+
+  return output;
 };
 
 /**
@@ -45,7 +47,7 @@ const getTextareaRowCount = (value: string) : number => {
     rows += 1;
   }
 
-  return (rows > 3 ) ? rows : 3;
+  return (rows > 3) ? rows : 3;
 };
 
 /**
@@ -65,7 +67,7 @@ export const TextInputField = (props: GenericTextFieldProps) => {
         name={labelID}
         value={value}
         {...attrs}
-        onkeyup={onKeyUpFunc} />
+        onKeyUp={onKeyUpFunc} />
     );
 };
 
@@ -84,7 +86,7 @@ export const TextAreaField = (props: AutoTextFieldProps) => {
         id={labelID}
         name={labelID}
         {...getDynamicAttrs(pattern, describedByID, disabled, _height)}
-        onkeyup={onKeyUpFunc}>
+        onKeyUp={onKeyUpFunc}>
         {value}
       </textarea>
     );

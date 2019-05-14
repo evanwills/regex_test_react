@@ -34,7 +34,7 @@ const RegexPair = (props: RegexPairProps, key: number) => {
   let extraOpen = 'regex-pair__extra';
   const prefix = 'regex-pair--' + key;
 
-  const { find, replace, delimiter, modifiers, multiLineCount, doReplaceOnTest, isOpen, transformEscapedWhiteSpace, valid, error, regexCount } = props
+  const { find, replace, delimiter, modifiers, multiLineCount, doReplaceOnTest, isOpen, transformEscapedWhiteSpace, regexCount } = props
 
   if (multiLineCount > 1) {
     isInput = false;
@@ -43,6 +43,7 @@ const RegexPair = (props: RegexPairProps, key: number) => {
   if (isOpen === true) {
     extraOpen += ' regex-pair__extra--open';
   }
+  const hasError = (find.error !== null);
 
   const dummyOnClick = (e) => {};
 
@@ -52,18 +53,47 @@ const RegexPair = (props: RegexPairProps, key: number) => {
         <FindReplaceField
           pairID={key}
           value={find.value}
-          findReplace='find' isInput={isInput} error={find.errorMsg} />
-        <Modifiers labelID={key} modifiers={modifiers.value} pattern={ modifiers.pattern} error={modifiers.errorMsg} />
-        <FindReplaceField pairID={key} value={replace} findReplace='replace' isInput={isInput} error="" />
+          findReplace='find'
+          isInput={isInput}
+          error={find.error} />
+        <Modifiers
+          labelID={key}
+          modifiers={modifiers.value}
+          pattern={modifiers.pattern}
+          error={modifiers.error} />
+        <FindReplaceField
+          pairID={key}
+          value={replace.value}
+          findReplace='replace'
+          isInput={isInput}
+          error={null} />
         <AccessibleButton {...OpenClose(key, true, dummyOnClick)} />
       </main>
       <footer className={extraOpen}>
         <div className="regex-pair__extra__inputs">
-          <Delimiter pairID={key} delimiter={delimiter.value} pattern={delimiter.pattern} error={delimiter.errorMsg} />
-          <Checkbox labelID={'regex-pair--' + key + '__transformWhitespaceCharacters'} value="1" labelText="Transform escaped whitespace characters in replace string" isChecked={transformEscapedWhiteSpace} onChangeFunc={false} />
-          <Checkbox labelID={'regex-pair--' + key + '__doReplaceOnTest'} value="1" labelText="Do replace on test" isChecked={doReplaceOnTest} onChangeFunc={dummyOnClick} />
+          <Delimiter
+            pairID={key}
+            value={delimiter.value}
+            pattern={delimiter.pattern}
+            error={delimiter.error}
+            onKeyUpFunc={dummyOnClick} />
+          <Checkbox
+            labelID={'regex-pair--' + key + '__transformWhitespaceCharacters'}
+            value="1"
+            labelText="Transform escaped whitespace characters in replace string"
+            isChecked={transformEscapedWhiteSpace}
+            onChangeFunc={false} />
+          <Checkbox
+            labelID={'regex-pair--' + key + '__doReplaceOnTest'}
+            value="1"
+            labelText="Do replace on test"
+            isChecked={doReplaceOnTest}
+            onChangeFunc={dummyOnClick} />
         </div>
-        <DeleteRegex labelID={key} count={regexCount} onClickFunc={dummyOnClick} />
+        <DeleteRegex
+          labelID={key}
+          count={regexCount}
+          onClickFunc={dummyOnClick} />
         <AccessibleButton {...OpenClose(key, false, dummyOnClick)} />
       </footer>
     </article>

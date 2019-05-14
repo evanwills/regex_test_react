@@ -2,6 +2,12 @@ import React from 'react'
 import AccessibleButton from '../generic/button'
 import {DeleteRegexProps} from '../regex-pairs/pair.typeDefs'
 
+export interface DeleteRegexProps {
+  labelID: number,
+  count: number,
+  onClickFunc: CallableFunction
+}
+
 export const DeleteRegex = (props: DeleteRegexProps) => {
   if (props.count > 1) {
     const ID = 'regex-pair--' + props.labelID + '__delete';

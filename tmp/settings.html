@@ -72,7 +72,13 @@
 					<li>
 						<label class="label--checkbox">
 							<input type="checkbox" class="settings__longLine" name="settings__longLine" id="settings__longLine" class="settings__longLine" value="1" />
-							Long line (single column)
+							Long line input (single column)
+						</label>
+					</li>
+					<li>
+						<label class="label--checkbox">
+							<input type="checkbox" class="settings__multiLine" name="settings__multiLine" id="settings__multiLine" class="settings__multiLine" value="1" />
+							Multi line input
 						</label>
 					</li>
 				</ul>
@@ -119,6 +125,9 @@
 									<strong>NOTE:</strong>
 									If the delimiter is a bracket/brace the delimiters will automatically be paired so the opening delimiter is the opening bracket/brace and the closing delimiter is it's closing equivalent.
 								</p>
+								<p>
+									<strong>Note also:</strong> be cautious about using any character as a delimiter that is also a regular expression special character because you cannot use that character for it's normal purpose.
+								</p>
 							</li>
 						</ul>
 					</div>
@@ -152,6 +161,7 @@
 
 					<div id="rendering-white-space-chars">
 						<p>When rendering samples and matches</p>
+						<p><strong>Note:</strong> it's often useful to see which white space characters are being matched when looking at samples and captured sub patterns.</p>
 
 						<ul class="list-unstyled">
 							<li>
