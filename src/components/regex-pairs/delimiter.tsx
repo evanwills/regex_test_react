@@ -11,6 +11,15 @@ interface DelimiterProps {
   onKeyUpFunc: CallableFunction
 }
 
+// ==============================================
+// Delimiter has two states
+
+
+/**
+ * Delimiter() renders a regex delimiter
+ * @param props
+ */
+
 
 export const Delimiter = (props: DelimiterProps) => {
   const {pairID, value, pattern, error} = props;

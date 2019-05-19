@@ -1,0 +1,75 @@
+
+.btn {
+  border: none;
+  color: #fff;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+
+  &-icon {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+
+    &:after {
+      cursor: pointer;
+      display: block;
+      font-size: 1.5rem;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform-origin: 50% 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &-tab {
+    background-color: #033903;
+  }
+
+  &-submit {
+    background-color: #090;
+    text-shadow: #040 0rem 0rem 0.2rem;
+
+    &:hover {
+      background-color: #080;
+      text-shadow: #000 0rem 0rem 0.5rem;
+    }
+  }
+
+  &-reset {
+    background-color: #900;
+    margin-right: 0;
+
+    &:hover {
+      text-shadow: #200 0rem 0rem 0.5rem;
+    }
+  }
+
+  &-settings {
+    background-color: #fc9026;
+
+    &::after {
+      content:'\0229B';
+      top: 39%;
+      font-size: 2rem;
+
+      &:hover {
+        text-shadow: #893419 0rem 0rem 0.5rem;
+      }
+    }
+  }
+
+  &-help {
+    background-color: #007;
+  }
+}

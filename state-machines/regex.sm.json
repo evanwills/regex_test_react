@@ -14,6 +14,13 @@
       "delimiter": "valid",
       "multiLineCount": "valid"
     },
+    "childStates": [
+      "transformEscaptedWhiteSpace",
+      "doReplaceOnTest",
+      "longLine",
+      "multiLine",
+      "settingsOpen"
+    ],
     "note": "All other states are invalid"
   },
   "pattern": {
@@ -23,10 +30,12 @@
   },
   "modifiers": {
     "states": ["valid", "invalid"],
+    "default": "valid",
     "valid-when": "contains no more than one of each of the modifier letters"
   },
   "delimiter": {
     "states": ["valid", "invalid"],
+    "default": "valid",
     "valid-when": "contains only one non-alpha-numeric, non-whitespace charater"
   },
   "multiLineCount": {
@@ -36,6 +45,35 @@
     "default": 1,
     "valid-when": "is integer, greater than zero and less than 513",
     "requires": "modifier must contain 'x'"
+  },
+  "regexTester": {
+    "states": ["input", "pattern", "test", "replace"]
+  },
+  "globalSettings": {
+    "states": ["open", "closed"]
+  },
+  "help": {
+    "states": ["open", "closed"]
+  },
+  "longLine": {
+    "states": [true, false],
+    "default": false
+  },
+  "multiLine": {
+    "states": [true, false],
+    "default": false
+  },
+  "transformEscaptedWhiteSpace": {
+    "states": [true, false],
+    "default": true
+  },
+  "doReplaceOnTest": {
+    "states": [true, false],
+    "default": true
+  },
+  "regexSettings": {
+    "states": ["open", "closed"],
+    "default": "closed"
   }
 }
 

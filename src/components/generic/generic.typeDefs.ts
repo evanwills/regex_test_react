@@ -40,3 +40,20 @@ export interface GenericTextFieldProps {
 export interface AutoTextFieldProps extends GenericTextFieldProps {
   height?: number
 }
+
+export interface WholeTextFieldProps {
+  className: string
+  error?: ErrorObj,
+  fieldType: TextFieldTypes,
+  field: GenericTextFieldProps | AutoTextFieldProps,
+  ID: string,
+  label: string,
+}
+
+export enum AllFieldTypes {
+
+}
+export enum TextFieldTypes {
+  textarea,
+  input
+}
