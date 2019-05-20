@@ -32,19 +32,19 @@
 							</a>
 						</li>
 						<li role="presentation">
-							<a href="#matches" aria-controls="matches" id="" role="tab" data-toggle="tab" class="btn btn-tab">
+							<a href="#matches" aria-controls="matches" data-id="matches" role="tab" data-toggle="tab" class="btn btn-tab">
 								Matches
 							</a>
 						</li>
 						<li role="presentation">
-							<a href="#output" aria-controls="output" role="tab"  data-toggle="tab" class="btn btn-tab">
+							<a href="#output" aria-controls="output" role="tab"  data-toggle="tab" class="btn btn-tab" data-id="output">
 								Output
 							</a>
 						</li>
 					</ul>
 				</nav>
 			</header>
-			<main class="tab-content tab-content--2 tab-active--input" id="tabBlock">
+			<main class="tab-content tab-content--3 tab-active--input" id="tabBlock" >
 				<section role="tabpanel" class="tab-pane" id="input">
 					<h2>Sample</h2>
 					<p>
@@ -153,6 +153,106 @@
 
 						<button class="regex-pair__add regex-pair__add--after" name="regex-pair__add--after--1" id="regex-pair__add--after--1">Add <span class="sr-only">new regex</span> After</button>
 				</section>
+
+				<section  role="tabpanel" class="tab-pane" id="matches">
+					<h1>Matches</h1>
+					<div class="regex-match-all">
+					<article class="regex-match">
+						<code class="regex-match__regex"><pre>`(this).*?(?&lt;whole&gt;[a-z]+\s+(whole)).*?([a-z]+)`i	</pre></code>
+						<div class="regex-match__error"></div>
+						<dl class="regex-match__meta">
+							<dt>Execution time</dt>
+							<dd>0.25ms</dd>
+							<dt>Total matches</dt>
+							<dd>3</dd>
+							<dt>Source</dt>
+							<dd><pre class="regex-match__meta__source">This is the whole</pre></dd>
+						</dl>
+						<ol>
+							<li class="single-match">
+								<samp class="single-match__whole">This is the whole</samp>
+								<dl class="single-match__sub single-match__sub--8">
+									<dt>1</dt>
+									<dd>This</dd>
+									<dt><em>2</em> whole</dt>
+									<dd>the whole</dd>
+									<dt>3</dt>
+									<dd>whole</dd>
+								</dl>
+							</li>
+							<li class="single-match">
+								<samp class="single-match__whole">This is the whole match</samp>
+								<dl class="single-match__sub single-match__sub--10">
+									<dt>1</dt>
+									<dd>This</dd>
+									<dt><em>2</em> whole</dt>
+									<dd>the whole</dd>
+									<dt>3</dt>
+									<dd>whole</dd>
+									<dt><em>4</em> matches</dt>
+									<dd>match</dd>
+								</dl>
+							</li>
+							<li class="single-match">
+								<samp class="single-match__whole">This</samp>
+								<dl class="single-match__sub single-match__sub--1">
+									<dt>1</dt>
+									<dd>This</dd>
+								</dl>
+							</li>
+						</ol>
+					</article>
+					<article class="regex-match">
+						<code class="regex-match__regex"><pre>`(this).*?(?&lt;whole&gt;[a-z]+\s+(whole)).*?([a-z]+)`i</pre></code>
+						<div class="regex-match__error"></div>
+						<dl class="regex-match__meta">
+							<dt>Execution time</dt>
+							<dd>0.25ms</dd>
+							<dt>Total matches</dt>
+							<dd>3</dd>
+							<dt>Source</dt>
+							<dd><pre class="regex-match__meta__source">This is the whole</pre></dd>
+						</dl>
+						<ol>
+							<li class="single-match">
+								<samp class="single-match__whole">This is the whole</samp>
+								<dl class="single-match__sub single-match__sub--8">
+									<dt>1</dt>
+									<dd>This</dd>
+									<dt><em>2</em> whole</dt>
+									<dd>the whole</dd>
+									<dt>3</dt>
+									<dd>whole</dd>
+								</dl>
+							</li>
+							<li class="single-match">
+								<samp class="single-match__whole">This is the whole match</samp>
+								<dl class="single-match__sub single-match__sub--10">
+									<dt>1</dt>
+									<dd>This</dd>
+									<dt><em>2</em> whole</dt>
+									<dd>the whole</dd>
+									<dt>3</dt>
+									<dd>whole</dd>
+									<dt><em>4</em> matches</dt>
+									<dd>match</dd>
+								</dl>
+							</li>
+							<li class="single-match">
+								<samp class="single-match__whole">This</samp>
+								<dl class="single-match__sub single-match__sub--1">
+									<dt>1</dt>
+									<dd>This</dd>
+								</dl>
+							</li>
+						</ol>
+					</article>
+					</div>
+				</section>
+
+				<section  role="tabpanel" class="tab-pane" id="output">
+					<h2>Output</h2>
+				</section>
 			</main>
 		</section>
 
@@ -181,8 +281,12 @@
 		<script type="text/javascript">
 var tabBtns = document.getElementsByClassName('btn-tab')
 var tabBlock = document.getElementById('tabBlock')
-var tabCount = 2;
+// var tabPains
+var tabCount = document.getElementsByClassName('tab-pane').length;
 var a = 0;
+
+console.log('tabCount:', tabCount);
+console.log('document.getElementsByClassName(tab-pane):', document.getElementsByClassName('tab-pane'));
 
 function tabClick(e) {
 	var b = 0;
@@ -204,6 +308,7 @@ for (a = 0; a < tabBtns.length; a += 1) {
 	console.log('tabBtns[' + a + ']:', tabBtns[a]);
 	tabBtns[a].addEventListener('click', tabClick);
 }
+tabBtns[0].dispatchEvent(new Event('click'));
 console.log(tabBtns)
 		</script>
 	</body>

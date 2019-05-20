@@ -32,7 +32,7 @@ pre {
   border: 0.05em solid #d799f0;
   padding: 0.75rem;
   background-color: #eaf8ff;
-  border-radius: 0.75rem;
+  border-radius: 0.25rem;
 }
 code { font-size: 1rem; }
 
@@ -420,6 +420,6 @@ input {
 .tab-content--4.tab-active--matches {
   transform: translateX(-50%);
 }
-.tab-content--4.tab-active--replace {
+.tab-content--4.tab-active--output {
   transform: translateX(-75%);
 }
