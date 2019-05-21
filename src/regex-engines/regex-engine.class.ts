@@ -6,12 +6,12 @@ export abstract class RegexEngine {
   readonly apiURL: string;
   readonly docsURL: string;
   readonly delimiterRequired: boolean;
-  readonly modifiers: Array<string>;
+  readonly modifiers: Array<string> = [];
   readonly name: string;
-  readonly pairedDelimiters: PairedDelimter;
+  readonly pairedDelimiters: PairedDelimter = {};
 
-  protected _closeDelimiter: string;
-  protected _openDelimiter: string;
+  protected _closeDelimiter: string = '';
+  protected _openDelimiter: string = '';
   protected _validateDelimiter: RegExp;
 
   constructor (engine: RegexConfig) {
@@ -55,6 +55,9 @@ export abstract class RegexEngine {
 
       this._validateDelimiter = new RegExp('^[^a-z0-9\s\\\\]$', 'i');
       this.setDefaultDelimiter(engine.defaultDelimiter);
+    } else {
+      // this is just to make TypeScript happy.
+      this._validateDelimiter = new RegExp('.*');
     }
   }
 

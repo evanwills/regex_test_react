@@ -1,6 +1,6 @@
 import React from 'react';
-import MainHeader from './components/wrapper/MainHeader';
-import MainFooter from './components/wrapper/MainFooter';
+import MainHeader from './pureComponents/wrapper/MainHeader';
+import MainFooter from './pureComponents/wrapper/MainFooter';
 
 const App: React.FC = () => {
   return (

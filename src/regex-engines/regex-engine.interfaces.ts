@@ -82,6 +82,15 @@ export enum RegexType {
 // export ReplacedInput: Array<string>
 
 export interface ValidatedRegex {
-  "valid": boolean,
-  "error?": RegexError
+  valid: boolean,
+  error: RegexError | null
+}
+
+export interface RegexIsValid extends ValidatedRegex {
+  valid: true
+  error: null
+}
+export interface RegexIsInValid extends ValidatedRegex {
+  valid: false
+  error: RegexError
 }

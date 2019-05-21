@@ -9,12 +9,12 @@ export class RemoteRegex extends RegexEngine {
   }
 
   public test(input: Array<string>, regexes: Array<RegexPair>) : Array<RegexTestResult> {
-    let output = [];
+    let output : Array<RegexTestResult> = [];
     return output;
   }
 
   public replace(input: Array<string>, regexes: Array<RegexPair>) : Array<string> {
-    let output = [];
+    let output : Array<string> = [];
     return output;
   }
 }
