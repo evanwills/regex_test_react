@@ -1,11 +1,18 @@
 import React from 'react'
+import { AccessibleButtonProps } from './generic.typeDefs';
 
-export const AccessibleButton = ({btnText, labelID, fieldClass, onClickFunc}) => {
+export const AccessibleButton = (props: AccessibleButtonProps) => {
+  const {btnText, fieldID, fieldClass} = props;
   return (
-    <button className={fieldClass} name={labelID} id={labelID} onClick={onClickFunc}>
+    <button
+      className={fieldClass}
+      name={fieldID}
+      id={fieldID}
+      >
       {btnText}
     </button>
-  )
-}
+  );
+  // onClick={onClickFunc}
+};
 
-export default AccessibleButton
+export default AccessibleButton;

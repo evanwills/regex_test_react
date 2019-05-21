@@ -1,16 +1,24 @@
 import React from 'react'
 
-export const ErrorMessage = ({errorMsg, describedByID, classPrefix}) => {
-  if (errorMsg !== null) {
+interface ErrorMessageProps {
+  errorMsg: string,
+  describedByID: string,
+  classPrefix: string
+}
+
+export const ErrorMessage = (props: ErrorMessageProps) => {
+  if (props.errorMsg !== null) {
     return (
-      <span id={describedByID} className={classPrefix + '__error-msg'}>
-        {errorMsg}
+      <span id={props.describedByID} className={props.classPrefix + '__error-msg'}>
+        {props.errorMsg}
       </span>
     );
+  } else {
+    return null;
   }
 };
 
-export const getErrorMeta = (labelID: string, errorMsg: string = null) => {
+export const getErrorMeta = (fieldID: string, errorMsg: string = '') => {
   let output = {
     errorClass: '',
     describedBy: '',
@@ -19,7 +27,7 @@ export const getErrorMeta = (labelID: string, errorMsg: string = null) => {
   };
 
   if (errorMsg !== null) {
-    let describedByID = labelID + '--error';
+    let describedByID = fieldID + '--error';
     output.errorClass = ' has-error';
     output.describedByID = describedByID;
     output.describedBy = ' aria-described-by="' + describedByID + '"';

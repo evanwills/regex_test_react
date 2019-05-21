@@ -11,8 +11,8 @@ const modifiersOnChange = (key: number, field: string) => {
 
 
 export const Modifiers = (props: ModifiersProps) => {
-  const { labelID, modifiers, pattern, error } = props;
-  const ID = 'regex-pair--' + labelID + '__modifiers';
+  const { fieldID, modifiers, pattern, error } = props;
+  const ID = 'regex-pair--' + fieldID + '__modifiers';
   const fieldClass = 'regex-pair__modifiers';
   const PATTERN = '^' + pattern + '$';
   const errorMeta = getErrorMeta(ID, error);
@@ -27,7 +27,7 @@ export const Modifiers = (props: ModifiersProps) => {
     <div className={wrapperClass}>
       <label htmlFor={ID}>Modifiers</label>
       <TextInputField
-        labelID={ID}
+        fieldID={ID}
         fieldClass={fieldClass + '__input'}
         value={modifiers}
         pattern={PATTERN}

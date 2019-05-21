@@ -25,14 +25,14 @@ export interface FindReplaceFieldProps {
 }
 
 export interface DeleteRegexProps {
-  labelID: number,
+  fieldID: number,
   count: number,
   onClickFunc: CallableFunction
 }
 
 export interface ModifiersProps {
   error?: ErrorObj,
-  labelID: number,
+  fieldID: number,
   modifiers: string,
   pattern: string
 }

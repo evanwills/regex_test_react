@@ -1,5 +1,15 @@
 import React from 'react'
 import { GenericTextFieldProps, AutoTextFieldProps } from './generic.typeDefs'
+import { string } from 'prop-types';
+
+
+interface OptionalTextFieldAttrs {
+  // aria-describedby?: string,
+  pattern?: string,
+  disabled?: boolean,
+  readonly?: boolean,
+  rows?: number
+}
 
 /**
  * getDynamicAttrs() builds a list of HTML attributes to be added
@@ -13,20 +23,23 @@ import { GenericTextFieldProps, AutoTextFieldProps } from './generic.typeDefs'
  * @param height specifies the number of "rows" high a textarea
  *        field should be
  */
-const getDynamicAttrs = (pattern: string, describedByID: string, disabled: boolean, height?: number) => {
-  let output = {};
+const getDynamicAttrs = (pattern: string, describedByID: string, disabled: boolean, readonly: boolean, height?: number) : OptionalTextFieldAttrs => {
+  let output : OptionalTextFieldAttrs = {};
 
-  if (describedByID !== '') {
-    output['aria-described-by'] = describedByID;
-  }
+  // if (describedByID !== '') {
+  //   output += ' aria-describedby="described-by--' + describedByID + '"';
+  // }
   if (pattern !== '') {
-    output['pattern'] = pattern;
+    output.pattern = pattern;
   }
   if (disabled === true) {
-    output['disabled'] = disabled;
+    output.disabled = true;
+  }
+  if (readonly === true) {
+    output.readonly = true;
   }
   if (height !== null) {
-    output['rows'] = height;
+    output.rows = height;
   }
 
   return output;
@@ -56,19 +69,20 @@ const getTextareaRowCount = (value: string) : number => {
  * @param props
  */
 export const TextInputField = (props: GenericTextFieldProps) => {
-  const { labelID, fieldClass, value, pattern, describedByID, onKeyUpFunc, disabled } = props;
-  const attrs = getDynamicAttrs(pattern, describedByID, disabled);
+  const { fieldID, fieldClass, value, pattern, disabled, readonly } = props;
+  const attrs = getDynamicAttrs(pattern, fieldID, disabled, readonly);
 
   return (
       <input
         type="text"
         className={fieldClass}
-        id={labelID}
-        name={labelID}
+        id={fieldID}
+        name={fieldID}
         value={value}
         {...attrs}
-        onKeyUp={onKeyUpFunc} />
+        />
     );
+    // onKeyUp={onKeyUpFunc}
 };
 
 /**
@@ -76,19 +90,20 @@ export const TextInputField = (props: GenericTextFieldProps) => {
  * @param props
  */
 export const TextAreaField = (props: AutoTextFieldProps) => {
-  const { labelID, fieldClass, value, pattern, describedByID, onKeyUpFunc, disabled, height } = props;
+  const { fieldID, fieldClass, value, pattern, describedByID, onKeyUpFunc, disabled, height } = props;
 
   const _height = (height === 0) ? getTextareaRowCount(value) : height;
 
   return (
       <textarea
         className={fieldClass}
-        id={labelID}
-        name={labelID}
+        id={fieldID}
+        name={fieldID}
         {...getDynamicAttrs(pattern, describedByID, disabled, _height)}
-        onKeyUp={onKeyUpFunc}>
+        >
         {value}
       </textarea>
     );
+    // onKeyUp={onKeyUpFunc}
 };
 

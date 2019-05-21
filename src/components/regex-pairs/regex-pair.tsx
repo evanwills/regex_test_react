@@ -20,7 +20,7 @@ const OpenClose = (id: number, isOpen: boolean = true, onClickFunc: CallableFunc
 
   const output = {
     btnText: btnText,
-    labelID: 'regex-pair--' + id +'__extra-' + mode,
+    fieldID: 'regex-pair--' + id +'__extra-' + mode,
     fieldClass: 'regex-pair__open-close',
     onClickFunc: onClickFunc
   };
@@ -57,7 +57,7 @@ const RegexPair = (props: RegexPairProps, key: number) => {
           isInput={isInput}
           error={find.error} />
         <Modifiers
-          labelID={key}
+          fieldID={key}
           modifiers={modifiers.value}
           pattern={modifiers.pattern}
           error={modifiers.error} />
@@ -78,20 +78,20 @@ const RegexPair = (props: RegexPairProps, key: number) => {
             error={delimiter.error}
             onKeyUpFunc={dummyOnClick} />
           <Checkbox
-            labelID={'regex-pair--' + key + '__transformWhitespaceCharacters'}
+            fieldID={'regex-pair--' + key + '__transformWhitespaceCharacters'}
             value="1"
             labelText="Transform escaped whitespace characters in replace string"
             isChecked={transformEscapedWhiteSpace}
             onChangeFunc={false} />
           <Checkbox
-            labelID={'regex-pair--' + key + '__doReplaceOnTest'}
+            fieldID={'regex-pair--' + key + '__doReplaceOnTest'}
             value="1"
             labelText="Do replace on test"
             isChecked={doReplaceOnTest}
             onChangeFunc={dummyOnClick} />
         </div>
         <DeleteRegex
-          labelID={key}
+          fieldID={key}
           count={regexCount}
           onClickFunc={dummyOnClick} />
         <AccessibleButton {...OpenClose(key, false, dummyOnClick)} />

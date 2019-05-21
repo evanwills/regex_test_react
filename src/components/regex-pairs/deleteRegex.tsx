@@ -11,15 +11,20 @@ export interface DeleteRegexProps {
 export const DeleteRegex = (props: DeleteRegexProps) => {
   if (props.count > 1) {
     const ID = 'regex-pair--' + props.labelID + '__delete';
+    const dumb = false
     return (
       <div className="regex-pair__extra__actions">
         <AccessibleButton
           btnText="Delete this regex"
           labelID={ID}
           fieldClass="regex-pair__delete"
-          onClickFunc={props.onClickFunc} />
+          disabled={false}
+          readonly={false}
+          value=""
+           />
       </div>
-    )
+    );
+    // onClickFunc={props.onClickFunc}
   }
 }
 

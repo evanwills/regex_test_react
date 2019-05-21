@@ -1,17 +1,18 @@
 import React from 'react'
+import { AcccessibleCheckableFieldProps } from './generic.typeDefs'
 
-const Checkbox = ({ labelID, value, labelText, isChecked, onChangeFunc }) => {
+const Checkbox = (props: AcccessibleCheckableFieldProps) => {
   return (
     <label className="label--checkbox">
       <input
         type="checkbox"
-        name={labelID}
-        value={value}
-        checked={isChecked}
-        onChange={onChangeFunc} />
-      {labelText}
+        name={props.fieldID}
+        value={props.value}
+        checked={props.isChecked} />
+      {props.labelText}
     </label>
   );
+  // onChange={props.onChangeFunc}
 }
 
 export default Checkbox;

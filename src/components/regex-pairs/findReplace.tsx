@@ -32,7 +32,7 @@ export const FindReplaceField = (props: FindReplaceFieldProps) => {
   const errorMeta = getErrorMeta(ID, error.errorMsg);
 
   const inputProps = {
-    labelID: ID,
+    fieldID: ID,
     fieldClass: fieldClass,
     value: value,
     pattern: '',

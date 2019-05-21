@@ -11,30 +11,39 @@ export interface TextInput {
   errorMsg?: ErrorObj
 }
 
-export interface AccessibleButtonProps {
+export interface AccessibleFieldProps {
+  value: string,
+  disabled: boolean,
+  fieldClass: string,
+  fieldID: string,
+  // onClickFunc: CallableFunction,
+  readonly: boolean
+}
+
+export interface AcccessibleCheckableFieldProps extends AccessibleFieldProps {
+  isChecked: boolean,
+  labelText: string
+  // onChangeFunc: CallableFunction
+}
+
+
+
+export interface AccessibleButtonProps extends AccessibleFieldProps {
   btnText: string,
-  labelID: string,
-  fieldClass: string,
-  onClickFunc: CallableFunction
 }
 
-export interface TextBlockProps {
-  labelID: number,
-  value: string,
+export interface TextBlockProps extends AccessibleFieldProps {
   pattern: string,
   describedByID: string,
   onKeyUpFunc: CallableFunction,
-  disabled: boolean
 }
 
-export interface GenericTextFieldProps {
-  labelID: string,
+export interface GenericTextFieldProps extends AccessibleFieldProps {
+  // describedByID: string,
+  error: ErrorObj,
   fieldClass: string,
-  value: string,
-  pattern: string,
-  describedByID: string,
-  onKeyUpFunc: CallableFunction,
-  disabled: boolean
+  pattern: string
+  // onKeyUpFunc: CallableFunction,
 }
 
 export interface AutoTextFieldProps extends GenericTextFieldProps {
@@ -43,15 +52,19 @@ export interface AutoTextFieldProps extends GenericTextFieldProps {
 
 export interface WholeTextFieldProps {
   className: string
-  error?: ErrorObj,
-  fieldType: TextFieldTypes,
+  error: ErrorObj,
   field: GenericTextFieldProps | AutoTextFieldProps,
-  ID: string,
+  fieldType: TextFieldTypes,
+  fieldID: string,
   label: string,
 }
 
 export enum AllFieldTypes {
-
+  select,
+  radio,
+  checkbox,
+  textarea,
+  input
 }
 export enum TextFieldTypes {
   textarea,
