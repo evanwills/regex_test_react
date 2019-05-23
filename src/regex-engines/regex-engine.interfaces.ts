@@ -1,96 +1,119 @@
-export interface APIresponse {
-  'ok': boolean,
-  'code': number,
-  'content': any,
-  'returnType': string
+export interface IAPIresponse {
+  ok: boolean,
+  code: number,
+  content: any,
+  returnType: string
 }
 
-export interface ConstructedRegex {
-  error: ValidatedRegex,
+export interface IConstructedRegex {
+  error: IValidatedRegex,
   find: any,
   regexID: number,
   replace: string
 }
 
-export interface DelimPair {
+export interface IDelimPair {
   open: string,
   close: string
 }
 
-export interface PairedDelimter {
-  [index: string]: [string, string];
-}
-
-export interface Regex {
-  delimiterClose?: string,
-  delimiterOpen?: string,
+export interface IRegex {
+  delimiters: IDelimPair
   modifiers: string,
   regex: string,
+  error: IValidatedRegex
 }
 
-export interface RegexConfig {
-  "id": string,
-  "apiURL": string,
-  "defaultDelimiter": string,
-  "delimiterRequired": boolean,
-  "docsURL": string,
-  "modifiers": Array<string>,
-  "name": string,
-  "pairedDelimiters"?: PairedDelimter,
-  "type": RegexType
+export interface IRegexPair extends IRegex {
+  doReplaceOnTest: boolean,
+  id: number,
+  replace: string,
+  transformEscapedWhiteSpace: boolean,
+  longLine: boolean,
+  multiLine: boolean,
+  lineCount: number
 }
 
-export interface RegexError {
-  "rawMessage": string,
-  "message": string,
-  "offset": number,
-  "badCharacter": string,
-  "regexID"?: number
+export interface IRegexError {
+  rawMessage: string,
+  message: string,
+  offset: number,
+  badCharacter: string,
+  regexID?: number
 }
 
-export interface RegexMatch {
+export interface IRegexMatch {
   whole: string;
   parts: any
   position?: number
 }
 
-export interface RegexPair extends Regex {
-  doReplaceOnTest: boolean,
-  id: number,
-  replace: string,
-  transformWhitespaceCharacters: boolean
-}
-
-export interface regexTestGlobal {
-  matches: Array<RegexMatch>,
+export interface IRegexTestGlobal {
+  matches: IRegexMatch[],
   execTime: number
 }
 
-export interface RegexTestResult {
-  error: ValidatedRegex,
+export interface IRegexTestResult {
+  error: IValidatedRegex,
   executionTime?: number,
   inputID: number,
-  matches: Array<RegexMatch>,
+  matches: IRegexMatch[],
   regexID: number
 }
 
-export enum RegexType {
-  local,
-  remote
+export interface IDelimModError {
+  invalidItems: string[],
+  message: string
+}
+
+export interface IValidatedModDelim {
+  error: IDelimModError,
+  valid: boolean
+}
+export interface IValidatedModifiers extends IValidatedModDelim {
+  modifiers: string
+}
+export interface IValidatedDelimiters extends IValidatedModDelim {
+  delimiters: IDelimPair
 }
 
 // export ReplacedInput: Array<string>
 
-export interface ValidatedRegex {
-  valid: boolean,
-  error: RegexError | null
+export interface IValidatedRegex {
+  error: IRegexError | null,
+  valid: boolean
 }
 
-export interface RegexIsValid extends ValidatedRegex {
+export interface IRegexIsValid extends IValidatedRegex {
+  error: null,
   valid: true
-  error: null
 }
-export interface RegexIsInValid extends ValidatedRegex {
+export interface IRegexIsInValid extends IValidatedRegex {
+  error: IRegexError,
   valid: false
-  error: RegexError
+}
+
+export enum engineAccess {
+  local,
+  remote
+}
+
+export enum flagsModifiers {
+  flags,
+  modifiers
+}
+
+export interface IRegexConfig {
+  allowedDelimiters: string[],
+  apiURL: string,
+  defaultDelimiters: IDelimPair,
+  defaultModifiers: string,
+  delimiterRequired: boolean,
+  docsURL: string,
+  id: string,
+  modifiers: string[],
+  modifiersName: flagsModifiers,
+  name: string,
+  pairedDelimiters: IDelimPair[]
+  type: engineAccess
 }

@@ -1,36 +1,47 @@
-export const initialState = {
-  autoTestOnBlur: false,
-  defaultMultiLineRegex: false,
-  defaultMultiLineCount: 3,
-  doReplaceOnTest: true,
+import { IRegexTestState } from "../typeDefinitions/state.defs";
+
+export const initialState : IRegexTestState = {
   input: [],
-  maxSampleLength: 300,
-  maxSubPatternLength: 300,
+  matches: [],
   output: '',
-  overrideDelimiter: '/',
-  regexEngine: null,
-  regexEngineName: 'vanillaJS',
-  regexID: 0,
-  regexes: [
+  regexPairs: [
     {
+      delimiters: {
+        close: '/',
+        open: '/'
+      },
+      doReplaceOnTest: true,
+      error: {
+        error: null,
+        valid: true
+      },
       id: 0,
-      pattern: '',
-      replace: '',
-      delimiter: '/',
+      lineCount: 1,
+      longLine: false,
       modifiers: '',
-      multiLineCount: 1,
-      transformEscapedWhiteSpace: true,
-      valid: true,
-      error: {},
-      matches: []
+      multiLine: false,
+      regex: '',
+      replace: '',
+      transformEscapedWhiteSpace: true
     }
   ],
-  showWhiteSpaceCharacters: false,
-  whiteSpace: {
-    joinString: '\n',
-    split: false,
-    splitPattern: '[\r\n]+',
-    trim: false,
-    trimBefore: false
+  settings: {
+    autoTestOnBlur: false,
+    defaultMultiLineCount: 3,
+    defaultMultiLineRegex: false,
+    doReplaceOnTest: true,
+    maxSampleLength: 300,
+    maxSubPatternLength: 300,
+    overrideDelimiter: '/',
+    regexEngineName: 'vanillaJS',
+    regexUID: 0,
+    showWhiteSpaceCharacters: false,
+    whiteSpace: {
+      joinString: '\n',
+      split: false,
+      splitPattern: '[\r\n]+',
+      trim: false,
+      trimBefore: false
+    }
   }
 }
